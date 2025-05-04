@@ -28,7 +28,7 @@ struct ExerciceRepository {
         newExercice.date = date
         newExercice.intensity = Int16(intensity)
         newExercice.duration = Int64(duration)
-        newExercice.type = category
+        newExercice.category = category
         try viewContext.save()
     }
 }
