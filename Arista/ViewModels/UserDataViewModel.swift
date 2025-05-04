@@ -9,8 +9,8 @@ import Foundation
 import CoreData
 
 class UserDataViewModel: ObservableObject {
-    @Published var firstName: String = ""
-    @Published var lastName: String = ""
+    @Published var name: String = ""
+    @Published var email: String = ""
 
     private var viewContext: NSManagedObjectContext
 
@@ -20,8 +20,14 @@ class UserDataViewModel: ObservableObject {
     }
 
     private func fetchUserData() {
-        // TODO: fetch data in CoreData and replace dumb value below with appropriate information
-        firstName = "Charlotte"
-        lastName = "Corino"
+        do {
+            guard let user = try UserRepository().getUser() else {
+                throw URLError(.badURL)
+            }
+            self.email = user.email ?? ""
+            self.name = user.name ?? ""
+        } catch {
+            print(error.localizedDescription)
+        }
     }
 }

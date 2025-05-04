@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 class ExerciseListViewModel: ObservableObject {
-    @Published var exercises = [FakeExercise]()
+    @Published var exercises: [Exercice] = []
 
     var viewContext: NSManagedObjectContext
 
@@ -20,16 +20,10 @@ class ExerciseListViewModel: ObservableObject {
     }
 
     private func fetchExercises() {
-        // TODO: fetch data in CoreData and replace dumb value below with appropriate information
-        exercises = [FakeExercise(), FakeExercise(), FakeExercise()]
+        do {
+            exercises = try ExerciceRepository().getExercices()
+        } catch {
+            print(error.localizedDescription)
+        }
     }
-}
-
-struct FakeExercise: Identifiable {
-    var id = UUID()
-    
-    var category: String = "Football"
-    var duration: Int = 120
-    var intensity: Int = 8
-    var date: Date = Date()
 }
