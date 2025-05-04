@@ -11,6 +11,7 @@ struct IntensityPickerView: View {
     @ObservedObject var viewModel: AddExerciseViewModel
     @State private var lastHapticIntensity: Int = 5
     @GestureState private var dragOffsetX: CGFloat = 0.0
+    @Environment(\.dismiss) var dismiss
 
     let barWidth: CGFloat = 30
     let spacing: CGFloat = 5
@@ -23,56 +24,93 @@ struct IntensityPickerView: View {
             // Background Color
             LinearGradient(colors: viewModel.colorGradients[currentIntensity(for: dragOffsetX) - 1], startPoint: .topLeading, endPoint: .bottomTrailing)
                 .ignoresSafeArea()
-
-            ZStack(alignment: .bottomLeading) {
-                // Different intensity available
-                HStack(alignment: .bottom, spacing: spacing) {
-                    ForEach(1...totalBars, id: \.self) { value in
-                        RoundedRectangle(cornerRadius: 10)
-                            .frame(width: barWidth, height: CGFloat(value * 15))
-                            .foregroundStyle(.secondary)
-                            .onTapGesture {
-                                hapticFeedback(with: viewModel.intensity)
-                                withAnimation {
-                                    viewModel.intensity = value
+            
+            VStack {
+                Text("Évaluez votre effort")
+                    .font(.title.bold())
+                ZStack(alignment: .bottomLeading) {
+                    // Different intensity available
+                    HStack(alignment: .bottom, spacing: spacing) {
+                        ForEach(1...totalBars, id: \.self) { value in
+                            RoundedRectangle(cornerRadius: 10)
+                                .frame(width: barWidth, height: CGFloat(value * 15))
+                                .foregroundStyle(.white.opacity(0.2))
+                                .onTapGesture {
+                                    hapticFeedback(with: viewModel.currentIntensity)
+                                    withAnimation {
+                                        viewModel.currentIntensity = value
+                                    }
                                 }
-                            }
+                        }
                     }
-                }
-
-                // Current dragable Intensity
-                RoundedRectangle(cornerRadius: 10)
-                    .frame(width: barWidth, height: CGFloat(currentIntensity(for: dragOffsetX) * 15))
-                    .offset(x: xOffset(for: dragOffsetX), y: 0)
-                    .foregroundStyle(.white)
                     
-            }
-            .gesture(
-                DragGesture()
-                    .updating($dragOffsetX) { value, state, _ in
-                        state = value.translation.width
-                        let current = currentIntensity(for: value.translation.width)
+                    // Current dragable Intensity
+                    RoundedRectangle(cornerRadius: 10)
+                        .frame(width: barWidth, height: CGFloat(currentIntensity(for: dragOffsetX) * 15))
+                        .offset(x: xOffset(for: dragOffsetX), y: 0)
+                        .foregroundStyle(.white)
+                    
+                }
+                .gesture(
+                    DragGesture()
+                        .updating($dragOffsetX) { value, state, _ in
+                            state = value.translation.width
+                            let current = currentIntensity(for: value.translation.width)
                             if current != lastHapticIntensity {
                                 lastHapticIntensity = current
-
+                                
                                 hapticFeedback(with: current)
                             }
-                    }
-                    .onEnded { value in
-                        let new = currentIntensity(for: value.translation.width)
-                        let clamped = min(max(new, 1), totalBars)
-
-                        hapticFeedback(with: clamped)
-                        
-                        viewModel.intensity = clamped
-                    }
-            )
-            .padding(.horizontal)
+                        }
+                        .onEnded { value in
+                            let new = currentIntensity(for: value.translation.width)
+                            let clamped = min(max(new, 1), totalBars)
+                            
+                            hapticFeedback(with: clamped)
+                            
+                            viewModel.currentIntensity = clamped
+                        }
+                )
+                .padding()
+                HStack {
+                    Text("\(currentIntensity(for: dragOffsetX))")
+                        .padding()
+                        .background {
+                            Circle()
+                                .foregroundStyle(.white.opacity(0.2))
+                        }
+                    Text(viewModel.effort(for: currentIntensity(for: dragOffsetX)))
+                    Spacer()
+                }
+                .padding(.vertical, 5)
+                .padding(.horizontal, 20)
+                .font(.title2.bold())
+                .frame(maxWidth: .infinity)
+                .background {
+                    RoundedRectangle(cornerRadius: 20)
+                        .foregroundStyle(.white.opacity(0.2))
+                }
+                .padding()
+            }
+            .foregroundStyle(.white)
+        }
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                Button("Annuler") {
+                    dismiss()
+                }
+            }
+            ToolbarItem(placement: .topBarTrailing) {
+                Button("Mettre a jour") {
+                    viewModel.intensity = viewModel.currentIntensity
+                    dismiss()
+                }
+            }
         }
     }
 
     // Calculate currentIntensity during dragGesture
-    private func currentIntensity(for offset: CGFloat) -> Int {
+    private func currentIntensity(for offset: CGFloat = 0.0) -> Int {
         let xPos = xOffset(for: offset)
         let rawIndex = Int(round(xPos / (barWidth + spacing))) + 1
         return min(max(rawIndex, 1), totalBars)
@@ -80,7 +118,7 @@ struct IntensityPickerView: View {
 
     // Calcuate intensity position
     private func xOffset(for offset: CGFloat) -> CGFloat {
-        CGFloat(viewModel.intensity - 1) * (barWidth + spacing) + offset
+        CGFloat(viewModel.currentIntensity - 1) * (barWidth + spacing) + offset
     }
     
     // Activate haptic feedback

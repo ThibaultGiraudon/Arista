@@ -11,6 +11,7 @@ import CoreData
 
 class ExerciseListViewModel: ObservableObject {
     @Published var exercises: [Exercice] = []
+    @Published var exercisesPerMonth: [Date: [Exercice]] = [:]
 
     var viewContext: NSManagedObjectContext
 
@@ -19,9 +20,19 @@ class ExerciseListViewModel: ObservableObject {
         fetchExercises()
     }
 
-    private func fetchExercises() {
+    func fetchExercises() {
         do {
-            exercises = try ExerciceRepository().getExercices()
+            let components = try ExerciceRepository().getExercices()
+            exercisesPerMonth = Dictionary(grouping: components) { exercise -> Date in
+                let components = Calendar.current.dateComponents([.year, .month], from: exercise.date ?? .now)
+                let formatter = DateFormatter()
+                formatter.locale = .current
+                formatter.dateFormat = "MMMM yyyy"
+                if let date = Calendar.current.date(from: components) {
+                    return date
+                }
+                return .now
+            }
         } catch {
             print(error.localizedDescription)
         }

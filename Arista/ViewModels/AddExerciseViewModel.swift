@@ -10,10 +10,10 @@ import CoreData
 import SwiftUI
 
 class AddExerciseViewModel: ObservableObject {
-    @Published var category: String = ""
+    @Published var category: Category = .crossfit
     @Published var date: Date = Date.now
     @Published var duration: Int = 0
-    @Published var intensity: Int = 8
+    @Published var intensity: Int = 5
     let colorGradients: [[Color]] = [
         .interpolateColors(from: (60, 113, 85), to: (20, 35, 34), steps: 10),
         .interpolateColors(from: (54, 116, 108), to: (21, 33, 38), steps: 10),
@@ -26,7 +26,19 @@ class AddExerciseViewModel: ObservableObject {
         .interpolateColors(from: (132, 70, 126), to: (57, 16, 40), steps: 10),
         .interpolateColors(from: (130, 60, 102), to: (57, 17, 29), steps: 10)
     ]
-    
+    @Published var currentIntensity: Int = 5
+    func  effort(for value: Int) -> String {
+        switch value {
+            case 1...3:
+                return "Facile"
+            case 4...6:
+                return "Modéré"
+            case 7...8:
+                return "Difficile"
+            default:
+                return "Maximum"
+        }
+    }
 
     private var viewContext: NSManagedObjectContext
 
@@ -36,7 +48,7 @@ class AddExerciseViewModel: ObservableObject {
 
     func addExercise() -> Bool {
         do {
-            try ExerciceRepository().addExercice(category: category, date: date, intensity: intensity, duration: duration)
+            try ExerciceRepository().addExercice(category: category.rawValue, date: date, intensity: intensity, duration: duration)
             return true
         } catch {
             return false
@@ -64,8 +76,7 @@ class AddExerciseViewModel: ObservableObject {
             case 9:
                 return Color(132, 70, 126)
             default:
-                return .yellow
-//                return Color(130, 60, 102)
+                return Color(130, 60, 102)
         }
     }
     

@@ -10,30 +10,39 @@ import SwiftUI
 struct AddExerciseView: View {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var viewModel: AddExerciseViewModel
+    @State private var showIntensityPicker = false
 
     var body: some View {
         NavigationView {
             VStack {
                 Form {
-                    TextField("Catégorie", text: $viewModel.category)
-                    DatePicker("Date", selection: $viewModel.date)
-                    TextField("Durée (en minutes)", value: $viewModel.duration, format: .number)
-                    NavigationLink {
-                        IntensityPickerView(viewModel: viewModel)
-                    } label: {
-                        VStack(alignment: .leading) {
-                            Text("Effort ±")
-                            Text("\(viewModel.intensity)")
-                                .foregroundStyle(viewModel.currentColor)
-                                .font(.title.bold())
-                                .padding()
-                                .background {
-                                    Circle()
-                                        .foregroundStyle(viewModel.currentColor.opacity(0.3))
-                                }
+                    Section("Détail") {
+                        Picker("Catégorie", selection: $viewModel.category) {
+                            ForEach(Category.allCases, id: \.self) { category in
+                                Text("\(category)")
+                            }
+                        }
+                        DatePicker("Date", selection: $viewModel.date)
+                        TextField("Durée (en minutes)", value: $viewModel.duration, format: .number)
+                    }
+                    Section("Effort") {
+                        Button {
+                            showIntensityPicker = true
+                        } label: {
+                            HStack {
+                                Text("\(viewModel.intensity)")
+                                    .foregroundStyle(viewModel.currentColor)
+                                    .font(.title.bold())
+                                    .padding()
+                                    .background {
+                                        Circle()
+                                            .foregroundStyle(viewModel.currentColor.opacity(0.3))
+                                    }
+                                Spacer()
+                                IntensityView(intensity: viewModel.intensity)
+                            }
                         }
                     }
-                    .pickerStyle(.wheel)
                 }.formStyle(.grouped)
                 Spacer()
                 Button("Ajouter l'exercice") {
@@ -44,7 +53,11 @@ struct AddExerciseView: View {
                     
             }
             .navigationTitle("Nouvel Exercice ...")
-            
+            .sheet(isPresented: $showIntensityPicker) {
+                NavigationStack {
+                    IntensityPickerView(viewModel: viewModel)
+                }
+            }
         }
     }
 }
