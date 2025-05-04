@@ -16,9 +16,24 @@ struct AddExerciseView: View {
             VStack {
                 Form {
                     TextField("Catégorie", text: $viewModel.category)
-                    TextField("Heure de démarrage", text: $viewModel.startTime)
-                    TextField("Durée (en minutes)", text: $viewModel.duration)
-                    TextField("Intensité (0 à 10)", text: $viewModel.intensity)
+                    DatePicker("Date", selection: $viewModel.date)
+                    TextField("Durée (en minutes)", value: $viewModel.duration, format: .number)
+                    NavigationLink {
+                        IntensityPickerView(viewModel: viewModel)
+                    } label: {
+                        VStack(alignment: .leading) {
+                            Text("Effort ±")
+                            Text("\(viewModel.intensity)")
+                                .foregroundStyle(viewModel.currentColor)
+                                .font(.title.bold())
+                                .padding()
+                                .background {
+                                    Circle()
+                                        .foregroundStyle(viewModel.currentColor.opacity(0.3))
+                                }
+                        }
+                    }
+                    .pickerStyle(.wheel)
                 }.formStyle(.grouped)
                 Spacer()
                 Button("Ajouter l'exercice") {

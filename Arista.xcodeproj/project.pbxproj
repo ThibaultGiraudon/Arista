@@ -29,6 +29,8 @@
 		CE663E122DC1049C00793F91 /* Sleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE663E112DC1049C00793F91 /* Sleep.swift */; };
 		CE663E142DC1053E00793F91 /* ExerciceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE663E132DC1053E00793F91 /* ExerciceRepository.swift */; };
 		CE663E162DC1057A00793F91 /* Exercice.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE663E152DC1057A00793F91 /* Exercice.swift */; };
+		CE663E182DC1123900793F91 /* DefaultData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE663E172DC1123900793F91 /* DefaultData.swift */; };
+		CE663E1C2DC7595C00793F91 /* IntensityPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE663E1B2DC7595C00793F91 /* IntensityPickerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +76,8 @@
 		CE663E112DC1049C00793F91 /* Sleep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Sleep.swift; path = Arista/Sleep.swift; sourceTree = SOURCE_ROOT; };
 		CE663E132DC1053E00793F91 /* ExerciceRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciceRepository.swift; sourceTree = "<group>"; };
 		CE663E152DC1057A00793F91 /* Exercice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Exercice.swift; path = Arista/Exercice.swift; sourceTree = SOURCE_ROOT; };
+		CE663E172DC1123900793F91 /* DefaultData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DefaultData.swift; path = Arista/DefaultData.swift; sourceTree = SOURCE_ROOT; };
+		CE663E1B2DC7595C00793F91 /* IntensityPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntensityPickerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +174,7 @@
 				CE663E0D2DC103E000793F91 /* User.swift */,
 				CE663E112DC1049C00793F91 /* Sleep.swift */,
 				CE663E152DC1057A00793F91 /* Exercice.swift */,
+				CE663E172DC1123900793F91 /* DefaultData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -181,6 +186,7 @@
 				53E587642B23600400E4EF99 /* ExerciseListView.swift */,
 				53E587662B23600C00E4EF99 /* SleepHistoryView.swift */,
 				53E5876C2B236D9E00E4EF99 /* AddExerciseView.swift */,
+				CE663E1B2DC7595C00793F91 /* IntensityPickerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -335,12 +341,14 @@
 				53E587312B235E8F00E4EF99 /* AristaApp.swift in Sources */,
 				53E587652B23600400E4EF99 /* ExerciseListView.swift in Sources */,
 				53E5876B2B23648500E4EF99 /* ExerciseListViewModel.swift in Sources */,
+				CE663E1C2DC7595C00793F91 /* IntensityPickerView.swift in Sources */,
 				53E5873D2B235E9000E4EF99 /* Arista.xcdatamodeld in Sources */,
 				53E5876D2B236D9E00E4EF99 /* AddExerciseView.swift in Sources */,
 				CE663E142DC1053E00793F91 /* ExerciceRepository.swift in Sources */,
 				CE663E122DC1049C00793F91 /* Sleep.swift in Sources */,
 				53E5876F2B236DBC00E4EF99 /* AddExerciseViewModel.swift in Sources */,
 				53E587692B23616A00E4EF99 /* UserDataViewModel.swift in Sources */,
+				CE663E182DC1123900793F91 /* DefaultData.swift in Sources */,
 				CE663E102DC1046400793F91 /* SleepRepository.swift in Sources */,
 				CE663E162DC1057A00793F91 /* Exercice.swift in Sources */,
 			);
