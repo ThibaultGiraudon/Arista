@@ -3,14 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		53E587312B235E8F00E4EF99 /* AristaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E587302B235E8F00E4EF99 /* AristaApp.swift */; };
 		53E587352B235E9000E4EF99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53E587342B235E9000E4EF99 /* Assets.xcassets */; };
 		53E587382B235E9000E4EF99 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53E587372B235E9000E4EF99 /* Preview Assets.xcassets */; };
-		53E5873A2B235E9000E4EF99 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E587392B235E9000E4EF99 /* Persistence.swift */; };
 		53E5873D2B235E9000E4EF99 /* Arista.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 53E5873B2B235E9000E4EF99 /* Arista.xcdatamodeld */; };
 		53E587472B235E9000E4EF99 /* AristaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E587462B235E9000E4EF99 /* AristaTests.swift */; };
 		53E587512B235E9000E4EF99 /* AristaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E587502B235E9000E4EF99 /* AristaUITests.swift */; };
@@ -23,13 +22,6 @@
 		53E5876D2B236D9E00E4EF99 /* AddExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E5876C2B236D9E00E4EF99 /* AddExerciseView.swift */; };
 		53E5876F2B236DBC00E4EF99 /* AddExerciseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E5876E2B236DBC00E4EF99 /* AddExerciseViewModel.swift */; };
 		53E587712B23714800E4EF99 /* SleepHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E587702B23714800E4EF99 /* SleepHistoryViewModel.swift */; };
-		CE663E0C2DC1033800793F91 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE663E0B2DC1033800793F91 /* UserRepository.swift */; };
-		CE663E0E2DC103E000793F91 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE663E0D2DC103E000793F91 /* User.swift */; };
-		CE663E102DC1046400793F91 /* SleepRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE663E0F2DC1046400793F91 /* SleepRepository.swift */; };
-		CE663E122DC1049C00793F91 /* Sleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE663E112DC1049C00793F91 /* Sleep.swift */; };
-		CE663E142DC1053E00793F91 /* ExerciceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE663E132DC1053E00793F91 /* ExerciceRepository.swift */; };
-		CE663E162DC1057A00793F91 /* Exercice.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE663E152DC1057A00793F91 /* Exercice.swift */; };
-		CE663E182DC1123900793F91 /* DefaultData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE663E172DC1123900793F91 /* DefaultData.swift */; };
 		CE663E1C2DC7595C00793F91 /* IntensityPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE663E1B2DC7595C00793F91 /* IntensityPickerView.swift */; };
 /* End PBXBuildFile section */
 
@@ -55,7 +47,6 @@
 		53E587302B235E8F00E4EF99 /* AristaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AristaApp.swift; sourceTree = "<group>"; };
 		53E587342B235E9000E4EF99 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		53E587372B235E9000E4EF99 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		53E587392B235E9000E4EF99 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		53E5873C2B235E9000E4EF99 /* Arista.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Arista.xcdatamodel; sourceTree = "<group>"; };
 		53E587422B235E9000E4EF99 /* AristaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AristaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		53E587462B235E9000E4EF99 /* AristaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AristaTests.swift; sourceTree = "<group>"; };
@@ -70,15 +61,13 @@
 		53E5876C2B236D9E00E4EF99 /* AddExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExerciseView.swift; sourceTree = "<group>"; };
 		53E5876E2B236DBC00E4EF99 /* AddExerciseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExerciseViewModel.swift; sourceTree = "<group>"; };
 		53E587702B23714800E4EF99 /* SleepHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepHistoryViewModel.swift; sourceTree = "<group>"; };
-		CE663E0B2DC1033800793F91 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
-		CE663E0D2DC103E000793F91 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = User.swift; path = Arista/User.swift; sourceTree = SOURCE_ROOT; };
-		CE663E0F2DC1046400793F91 /* SleepRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepRepository.swift; sourceTree = "<group>"; };
-		CE663E112DC1049C00793F91 /* Sleep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Sleep.swift; path = Arista/Sleep.swift; sourceTree = SOURCE_ROOT; };
-		CE663E132DC1053E00793F91 /* ExerciceRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciceRepository.swift; sourceTree = "<group>"; };
-		CE663E152DC1057A00793F91 /* Exercice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Exercice.swift; path = Arista/Exercice.swift; sourceTree = SOURCE_ROOT; };
-		CE663E172DC1123900793F91 /* DefaultData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DefaultData.swift; path = Arista/DefaultData.swift; sourceTree = SOURCE_ROOT; };
 		CE663E1B2DC7595C00793F91 /* IntensityPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntensityPickerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		CE663E1D2DC78D3600793F91 /* Models */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Models; sourceTree = "<group>"; };
+		CE663E262DC78D4000793F91 /* Repositories */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Repositories; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		53E5872A2B235E8F00E4EF99 /* Frameworks */ = {
@@ -130,15 +119,12 @@
 			children = (
 				53E587612B235FDC00E4EF99 /* ViewModels */,
 				53E587602B235FD700E4EF99 /* Views */,
-				53E5875F2B235FD200E4EF99 /* Models */,
+				CE663E1D2DC78D3600793F91 /* Models */,
 				53E587302B235E8F00E4EF99 /* AristaApp.swift */,
 				53E587342B235E9000E4EF99 /* Assets.xcassets */,
-				53E587392B235E9000E4EF99 /* Persistence.swift */,
 				53E5873B2B235E9000E4EF99 /* Arista.xcdatamodeld */,
 				53E587362B235E9000E4EF99 /* Preview Content */,
-				CE663E0B2DC1033800793F91 /* UserRepository.swift */,
-				CE663E132DC1053E00793F91 /* ExerciceRepository.swift */,
-				CE663E0F2DC1046400793F91 /* SleepRepository.swift */,
+				CE663E262DC78D4000793F91 /* Repositories */,
 			);
 			path = Arista;
 			sourceTree = "<group>";
@@ -166,17 +152,6 @@
 				53E587522B235E9000E4EF99 /* AristaUITestsLaunchTests.swift */,
 			);
 			path = AristaUITests;
-			sourceTree = "<group>";
-		};
-		53E5875F2B235FD200E4EF99 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				CE663E0D2DC103E000793F91 /* User.swift */,
-				CE663E112DC1049C00793F91 /* Sleep.swift */,
-				CE663E152DC1057A00793F91 /* Exercice.swift */,
-				CE663E172DC1123900793F91 /* DefaultData.swift */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		53E587602B235FD700E4EF99 /* Views */ = {
@@ -216,6 +191,10 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				CE663E1D2DC78D3600793F91 /* Models */,
+				CE663E262DC78D4000793F91 /* Repositories */,
 			);
 			name = Arista;
 			productName = Arista;
@@ -332,10 +311,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE663E0E2DC103E000793F91 /* User.swift in Sources */,
-				53E5873A2B235E9000E4EF99 /* Persistence.swift in Sources */,
 				53E587712B23714800E4EF99 /* SleepHistoryViewModel.swift in Sources */,
-				CE663E0C2DC1033800793F91 /* UserRepository.swift in Sources */,
 				53E587632B235FF600E4EF99 /* UserDataView.swift in Sources */,
 				53E587672B23600C00E4EF99 /* SleepHistoryView.swift in Sources */,
 				53E587312B235E8F00E4EF99 /* AristaApp.swift in Sources */,
@@ -344,13 +320,8 @@
 				CE663E1C2DC7595C00793F91 /* IntensityPickerView.swift in Sources */,
 				53E5873D2B235E9000E4EF99 /* Arista.xcdatamodeld in Sources */,
 				53E5876D2B236D9E00E4EF99 /* AddExerciseView.swift in Sources */,
-				CE663E142DC1053E00793F91 /* ExerciceRepository.swift in Sources */,
-				CE663E122DC1049C00793F91 /* Sleep.swift in Sources */,
 				53E5876F2B236DBC00E4EF99 /* AddExerciseViewModel.swift in Sources */,
 				53E587692B23616A00E4EF99 /* UserDataViewModel.swift in Sources */,
-				CE663E182DC1123900793F91 /* DefaultData.swift in Sources */,
-				CE663E102DC1046400793F91 /* SleepRepository.swift in Sources */,
-				CE663E162DC1057A00793F91 /* Exercice.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
