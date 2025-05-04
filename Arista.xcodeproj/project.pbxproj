@@ -67,6 +67,7 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		CE663E1D2DC78D3600793F91 /* Models */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Models; sourceTree = "<group>"; };
 		CE663E262DC78D4000793F91 /* Repositories */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Repositories; sourceTree = "<group>"; };
+		CE663E292DC78DA300793F91 /* Utiles */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Utiles; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +126,7 @@
 				53E5873B2B235E9000E4EF99 /* Arista.xcdatamodeld */,
 				53E587362B235E9000E4EF99 /* Preview Content */,
 				CE663E262DC78D4000793F91 /* Repositories */,
+				CE663E292DC78DA300793F91 /* Utiles */,
 			);
 			path = Arista;
 			sourceTree = "<group>";
@@ -195,6 +197,7 @@
 			fileSystemSynchronizedGroups = (
 				CE663E1D2DC78D3600793F91 /* Models */,
 				CE663E262DC78D4000793F91 /* Repositories */,
+				CE663E292DC78DA300793F91 /* Utiles */,
 			);
 			name = Arista;
 			productName = Arista;
