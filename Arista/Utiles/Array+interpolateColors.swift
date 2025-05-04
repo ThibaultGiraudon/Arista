@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 extension Array<Color> {
-    func interpolateColors(from start: (Int, Int, Int), to end: (Int, Int, Int), steps: Int) -> [Color] {
+    static func interpolateColors(from start: (Int, Int, Int), to end: (Int, Int, Int), steps: Int) -> [Color] {
         (0..<steps).map { i in
             let t = Double(i) / Double(steps - 1)
             let r = Double(start.0) + (Double(end.0) - Double(start.0)) * t
