@@ -9,33 +9,38 @@ import SwiftUI
 
 struct SleepHistoryView: View {
     @ObservedObject var viewModel: SleepHistoryViewModel
+    var formatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        return formatter
+    }
 
-        var body: some View {
-            List(viewModel.sleepSessions) { session in
-                HStack {
-                    QualityIndicator(quality: session.quality)
-                        .padding()
-                    VStack(alignment: .leading) {
-                        Text("Début : \(session.startDate.formatted())")
-                        Text("Durée : \(session.duration/60) heures")
-                    }
+    var body: some View {
+        List(viewModel.sleepSessions) { session in
+            HStack {
+                QualityIndicator(quality: session.quality)
+                    .padding()
+                VStack(alignment: .leading) {
+                    Text("Début : \(session.startDate ?? Date.now, format: .dateTime.hour().minute())")
+                    Text("Durée : \(session.duration/60) heures")
                 }
             }
-            .navigationTitle("Historique de Sommeil")
         }
+        .navigationTitle("Historique de Sommeil")
+    }
 }
 
 struct QualityIndicator: View {
-    let quality: Int
+    let quality: Int16
 
     var body: some View {
         ZStack {
             Circle()
-                .stroke(qualityColor(quality), lineWidth: 5)
-                .foregroundColor(qualityColor(quality))
+                .stroke(qualityColor(Int(quality)), lineWidth: 5)
+                .foregroundColor(qualityColor(Int(quality)))
                 .frame(width: 30, height: 30)
             Text("\(quality)")
-                .foregroundColor(qualityColor(quality))
+                .foregroundColor(qualityColor(Int(quality)))
         }
     }
 

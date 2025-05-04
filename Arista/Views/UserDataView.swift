@@ -15,7 +15,7 @@ struct UserDataView: View {
             Spacer()
             Text("Hello")
                 .font(.largeTitle)
-            Text("\(viewModel.firstName) \(viewModel.lastName)")
+            Text("\(viewModel.name)")
                 .font(.largeTitle)
                 .fontWeight(.bold)
                 .foregroundColor(.blue)
