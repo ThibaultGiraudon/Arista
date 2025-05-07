@@ -19,11 +19,18 @@ struct ExerciseListView: View {
                             ForEach(exercices, id: \.self) { exercice in
                                 HStack {
                                     Image(systemName: iconForCategory(exercice.category ?? ""))
-                                        .font(.largeTitle)
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: 50, height: 50)
+                                        .padding()
+                                        .background {
+                                            Circle()
+                                                .foregroundStyle(.gray.opacity(0.2))
+                                        }
                                     VStack(alignment: .leading) {
                                         Text(exercice.category ?? "")
                                             .font(.title3)
-                                        Text("\(exercice.duration)")
+                                        Text("\(exercice.duration) min")
                                             .font(.largeTitle)
                                     }
                                     Spacer()
