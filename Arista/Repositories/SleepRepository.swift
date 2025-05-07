@@ -22,4 +22,12 @@ struct SleepRepository {
         ]
         return try viewContext.fetch(request)
     }
+    
+    func addSleep(duration: Int, quality: Int, startDate: Date) throws {
+        let newSleepSession = Sleep(context: viewContext)
+        newSleepSession.duration = Int64(duration)
+        newSleepSession.quality = Int16(quality)
+        newSleepSession.startDate = startDate
+        try viewContext.save()
+    }
 }
