@@ -20,49 +20,64 @@ struct DefaultData {
         
         let sleepRepository = SleepRepository(viewContext: viewContext)
         
+//        deleteAllData(viewContext)
+        
         if (try? userRepository.getUser()) == nil {
             let initialUser = User(context: viewContext)
-            initialUser.name = "Marie Curie"
-            initialUser.email = "marie.curie@gmail.com"
+            initialUser.name = "Thibault Giraudon"
+            initialUser.email = "thibault.giraudon@gmail.com"
             initialUser.password = "test123"
-             
+
             if try sleepRepository.getSleepSessions().isEmpty {
-                let sleep1 = Sleep(context: viewContext)
-                let sleep2 = Sleep(context: viewContext)
-                let sleep3 = Sleep(context: viewContext)
-                let sleep4 = Sleep(context: viewContext)
-                let sleep5 = Sleep(context: viewContext)
-                 
-                let timeIntervalForADay: TimeInterval = 60 * 60 * 24
-                 
-                sleep1.duration = (0...900).randomElement()!
-                sleep1.quality = (0...10).randomElement()!
-                sleep1.startDate = Date(timeIntervalSinceNow: timeIntervalForADay*5)
-                sleep1.user = initialUser
-                 
-                sleep2.duration = (0...900).randomElement()!
-                sleep2.quality = (0...10).randomElement()!
-                sleep2.startDate = Date(timeIntervalSinceNow: timeIntervalForADay*4)
-                sleep2.user = initialUser
-                 
-                sleep3.duration = (0...900).randomElement()!
-                sleep3.quality = (0...10).randomElement()!
-                sleep3.startDate = Date(timeIntervalSinceNow: timeIntervalForADay*3)
-                sleep3.user = initialUser
-                 
-                sleep4.duration = (0...900).randomElement()!
-                sleep4.quality = (0...10).randomElement()!
-                sleep4.startDate = Date(timeIntervalSinceNow: timeIntervalForADay*2)
-                sleep4.user = initialUser
-                 
-                sleep5.duration = (0...900).randomElement()!
-                sleep5.quality = (0...10).randomElement()!
-                sleep5.startDate = Date(timeIntervalSinceNow: timeIntervalForADay)
-                sleep5.user = initialUser
+                for dayOffset in -6...0 { // les 7 derniers jours
+                    let sleep = Sleep(context: viewContext)
+                    
+                    // Définir une date de départ réaliste : entre 21h et 01h
+                    let bedtimeHour = Int.random(in: 21...24)
+                    let bedtimeMinute = Int.random(in: 0...59)
+                    
+                    var calendar = Calendar.current
+                    calendar.timeZone = TimeZone(secondsFromGMT: 0)!
+                    let today = calendar.startOfDay(for: Date())
+                    let bedtime = calendar.date(byAdding: .day, value: dayOffset, to: today)!
+                    let bedtimeDate = calendar.date(bySettingHour: bedtimeHour % 24, minute: bedtimeMinute, second: 0, of: bedtime)!
+
+                    // Durée aléatoire entre 6 et 9 heures
+                    let durationInMinutes = Int64(Int.random(in: 360...540))
+                    sleep.duration = durationInMinutes
+                    sleep.startDate = bedtimeDate
+                    sleep.quality = Int16.random(in: 5...10)
+                    sleep.user = initialUser
+                }
+
             }
              
             try? viewContext.save()
         }
          
         }
+    
+    func randomElement() -> Double {
+        Double((-2...2).randomElement()!) * 3600
+    }
+    
+    func deleteAllData(_ context: NSManagedObjectContext) {
+        let persistentStoreCoordinator = context.persistentStoreCoordinator
+
+        for entityName in persistentStoreCoordinator?.managedObjectModel.entities.compactMap({ $0.name }) ?? [] {
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+            let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+            batchDeleteRequest.resultType = .resultTypeObjectIDs
+
+            do {
+                let result = try context.execute(batchDeleteRequest) as? NSBatchDeleteResult
+                let objectIDs = result?.result as? [NSManagedObjectID] ?? []
+                let changes: [AnyHashable: Any] = [NSDeletedObjectsKey: objectIDs]
+                NSManagedObjectContext.mergeChanges(fromRemoteContextSave: changes, into: [context])
+            } catch {
+                print("Erreur lors de la suppression de \(entityName): \(error)")
+            }
+        }
+    }
+
 }

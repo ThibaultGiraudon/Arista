@@ -25,4 +25,15 @@ class SleepHistoryViewModel: ObservableObject {
             print(error.localizedDescription)
         }
     }
+    
+    func getSleepSession(for day: Date) -> (start: Date, end: Date) {
+        let calendar = Calendar.current
+        let session = sleepSessions.first {
+            let endDay = calendar.startOfDay(for: $0.endDate)
+            let dayStripped = calendar.startOfDay(for: day)
+            return endDay == dayStripped
+        }
+        print(session?.startDate ?? day, session?.endDate ?? day)
+        return (session?.startDate ?? day, session?.endDate ?? day)
+    }
 }
