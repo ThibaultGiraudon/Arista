@@ -8,4 +8,8 @@
 import Foundation
 import CoreData
 
-class Sleep: NSManagedObject { }
+class Sleep: NSManagedObject {
+    var endDate: Date {
+        startDate?.addingTimeInterval(Double(duration * 60)) ?? .now
+    }
+}
