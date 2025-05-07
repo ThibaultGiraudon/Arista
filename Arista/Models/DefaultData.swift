@@ -20,36 +20,51 @@ struct DefaultData {
         
         let sleepRepository = SleepRepository(viewContext: viewContext)
         
-//        deleteAllData(viewContext)
+        deleteAllData(viewContext)
         
         if (try? userRepository.getUser()) == nil {
             let initialUser = User(context: viewContext)
             initialUser.name = "Thibault Giraudon"
             initialUser.email = "thibault.giraudon@gmail.com"
             initialUser.password = "test123"
+            
 
             if try sleepRepository.getSleepSessions().isEmpty {
-                for dayOffset in -6...0 { // les 7 derniers jours
-                    let sleep = Sleep(context: viewContext)
-                    
-                    // Définir une date de départ réaliste : entre 21h et 01h
-                    let bedtimeHour = Int.random(in: 21...24)
-                    let bedtimeMinute = Int.random(in: 0...59)
-                    
-                    var calendar = Calendar.current
-                    calendar.timeZone = TimeZone(secondsFromGMT: 0)!
-                    let today = calendar.startOfDay(for: Date())
-                    let bedtime = calendar.date(byAdding: .day, value: dayOffset, to: today)!
-                    let bedtimeDate = calendar.date(bySettingHour: bedtimeHour % 24, minute: bedtimeMinute, second: 0, of: bedtime)!
+                // Exemples : 7 sessions récentes (heure de coucher au même jour que réveil)
+                let sleepData: [(day: Int, month: Int, hour: Int, minute: Int, duration: Int)] = [
+                    (5, 05 ,0, 43, 480),   // 8h00
+                    (5, 05, 23, 57, 405),  // 6h45
+                    (6, 05, 1, 15, 390),   // 6h30
+                    (7, 05, 0, 30, 510),   // 8h30
+                    (7, 05, 22, 50, 465),  // 7h45
+                    (8, 05, 23, 10, 420),  // 7h00
+                    (10, 05, 0, 5, 450)    // 7h30
+                ]
 
-                    // Durée aléatoire entre 6 et 9 heures
-                    let durationInMinutes = Int64(Int.random(in: 360...540))
-                    sleep.duration = durationInMinutes
-                    sleep.startDate = bedtimeDate
-                    sleep.quality = Int16.random(in: 5...10)
+                let calendar = Calendar.current
+                let year = 2025
+                
+                for data in sleepData {
+                    let sleep = Sleep(context: viewContext)
+
+                    let dateComponents = DateComponents(
+                        calendar: calendar,
+                        timeZone: TimeZone.current, // Ou spécifiquement TimeZone(identifier: "Europe/Paris")
+                        year: year,
+                        month: data.month,
+                        day: data.day,
+                        hour: data.hour,
+                        minute: data.minute,
+                        second: 0
+                    )
+
+                    guard let startDate = calendar.date(from: dateComponents) else { continue }
+
+                    sleep.startDate = startDate
+                    sleep.duration = Int64(data.duration) // minutes
+                    sleep.quality = Int16.random(in: 0...10)
                     sleep.user = initialUser
                 }
-
             }
              
             try? viewContext.save()
