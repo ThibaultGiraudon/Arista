@@ -8,97 +8,96 @@
 import SwiftUI
 import Charts
 
-func sleepYAxisBounds() -> (lower: Date, upper: Date) {
-    let calendar = Calendar.current
-    let baseDate = calendar.date(from: DateComponents(year: 2000, month: 1, day: 1))!
-    
-    let lower = calendar.date(bySettingHour: 20, minute: 0, second: 0, of: baseDate)!
-    let upper = calendar.date(bySettingHour: 10, minute: 0, second: 0, of: baseDate.addingTimeInterval(86400))! // +1 jour
-
-    return (lower, upper)
-}
-
 struct SleepHistoryView: View {
     @ObservedObject var viewModel: SleepHistoryViewModel
-    @State private var date = Date()
-    let bounds = sleepYAxisBounds()
+    @State private var selectedDate: Date?
 
     var body: some View {
-        VStack {
-            Chart {
-                ForEach(generateDaysInWeek(for: date), id: \.self) { day in
-                    let session = viewModel.getSleepSession(for: day)
-                    let start = normalizeToReferenceDay(session.start)
-                    let end = normalizeToReferenceDay(session.end)
-                        
+        NavigationStack {
+            ScrollView {
+                Chart(viewModel.chartDatas, id: \.self) { data in
                     BarMark(
-                        x: .value("Jour", day, unit: .day),
-                        yStart: .value("Heure de coucher", start),
-                        yEnd: .value("Heure de réveil", end)
+                        x: .value("Jour", data.day, unit: .day),
+                        yStart: .value("Heure de coucher", data.start),
+                        yEnd: .value("Heure de réveil", data.end)
                     )
-                    .foregroundStyle(.blue.opacity(0.6)) 
+                    .foregroundStyle(.blue.opacity(0.6))
                     .clipShape(RoundedRectangle(cornerRadius: 10))
-
+                    
+                    if let selectedDate, let session = viewModel.getSleepSession(for: selectedDate) {
+                        sleepAnnotation(for: session, on: selectedDate)
+                    }
                 }
-            }
-            .chartYScale(domain: bounds.lower...bounds.upper)
-            .chartXAxis {
-                AxisMarks(values: .stride(by: .day, count: 1)) { value in
-                    AxisValueLabel(format: .dateTime.day())
+                .chartXSelection(value: $selectedDate)
+                .gesture(viewModel.gesture)
+                .chartXAxis {
+                    AxisMarks(values: .stride(by: .day, count: 1)) { value in
+                        AxisValueLabel(format: .dateTime.day().month())
+                    }
                 }
-            }
-            .chartYAxis {
-                AxisMarks(values: .stride(by: .hour, count: 2)) {
-                    AxisGridLine()
-                    AxisValueLabel(format: .dateTime.hour().minute())
+                .chartYAxis {
+                    AxisMarks(values: .stride(by: .hour, count: 2)) {
+                        AxisGridLine()
+                        AxisValueLabel(format: .dateTime.hour().minute())
+                    }
                 }
+                .chartYScale(domain: viewModel.yRange)
+                .chartXScale(domain: viewModel.xRange)
+                .padding(.top)
+                .frame(height: 400)
             }
             .padding()
+            .navigationTitle("Sommeil")
+            .navigationBarTitleDisplayMode(.inline)
         }
-        .padding()
-        .navigationTitle("Historique de Sommeil")
     }
     
-    func normalizeToReferenceDay(_ date: Date) -> Date {
-        var calendar = Calendar.current
-        calendar.timeZone = TimeZone(secondsFromGMT: -3600)!
-
-        let components = calendar.dateComponents([.hour, .minute, .second], from: date)
-
-        var baseDate = DateComponents(
-            calendar: calendar,
-            timeZone: TimeZone(secondsFromGMT: 0),
-            year: 2000,
-            month: 1,
-            day: 1,
-            hour: components.hour,
-            minute: components.minute,
-            second: components.second
-        )
-        
-        if let hour = components.hour, hour < 12 {
-            baseDate.day! += 1
-        }
-
-        return calendar.date(from: baseDate)!
+    func sleepAnnotation(for session: Sleep, on date: Date) -> some ChartContent {
+        RuleMark(x: .value("Date", date))
+            .annotation(position: .trailing) {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("ENDORMI")
+                    durationLabel(minutes: session.duration)
+                    Text("QUALITÉ")
+                    qualityLabel(score: session.quality)
+                }
+                .padding(.horizontal, 20)
+                .padding(.vertical, 5)
+                .foregroundStyle(.gray)
+                .background {
+                    RoundedRectangle(cornerRadius: 10)
+                        .fill(Color.secondary)
+                }
+            }
     }
     
-    func generateDaysInWeek(for date: Date) -> [Date] {
-        var days: [Date] = []
-        let calendar = Calendar.current
-        guard let weekInterval = calendar.dateInterval(of: .weekOfMonth, for: date) else { return days }
-        
-        var currentDate = weekInterval.start
-        while currentDate + 86400 < weekInterval.end + 86400 {
-            days.append(currentDate)
-            currentDate = calendar.date(byAdding: .day, value: 1, to: currentDate)!
+    @ViewBuilder
+    func durationLabel(minutes: Int64) -> some View {
+        HStack(spacing: 2) {
+            Text("\(minutes / 60)")
+                .foregroundStyle(.white)
+                .font(.title.bold())
+            Text("h")
+            Text("\(minutes % 60)")
+                .foregroundStyle(.white)
+                .font(.title.bold())
+            Text("m")
         }
-        
-        return days
     }
-    
+
+    @ViewBuilder
+    func qualityLabel(score: Int16) -> some View {
+        HStack(spacing: 2) {
+            Text("\(score)")
+                .foregroundStyle(.white)
+                .font(.title.bold())
+            Text("/ 10")
+        }
+    }
 }
 
 #Preview {
-    SleepHistoryView(viewModel: SleepHistoryViewModel(context: PersistenceController.preview.container.viewContext))
+//    NavigationStack {
+        SleepHistoryView(viewModel: SleepHistoryViewModel(context: PersistenceController.preview.container.viewContext))
+//    }
 }
