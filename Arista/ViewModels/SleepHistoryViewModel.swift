@@ -56,8 +56,10 @@ class SleepHistoryViewModel: ObservableObject {
     var chartDatas: [ChartSleepData] {
         daysInWeek.compactMap { day in
             guard let sleep = self.getSleepSession(for: day) else { return nil }
-            let start = self.normalizeToReferenceDay(sleep.startDate ?? day, isFirstDay: true)
-            let end = self.normalizeToReferenceDay(sleep.endDate, isFirstDay: false)
+            let start = self.normalizeToReferenceDay(sleep.startDate ?? day)
+            let end = self.normalizeToReferenceDay(sleep.endDate)
+            print(end)
+            print(start)
             return ChartSleepData(day: day, start: start, end: end)
         }
     }
@@ -134,9 +136,19 @@ class SleepHistoryViewModel: ObservableObject {
     
     /// Loads all sleep sessions from the repository and updates the local state.
     /// - Note: Errors are currently printed to the console. TODO: Display a user-facing error message.
-    private func fetchSleepSessions() {
+    func fetchSleepSessions() {
         do {
             sleepSessions = try SleepRepository().getSleepSessions()
+            sleepSessions.forEach { sleep in
+                let formatter = DateFormatter()
+                formatter.timeStyle = .medium
+                formatter.dateStyle = .medium
+                formatter.timeZone = .current // Utilise le fuseau horaire local
+                let start = formatter.string(from: sleep.startDate ?? .now)
+                let end = formatter.string(from: sleep.endDate)
+                print(start)
+                print(end)
+            }
         } catch {
             print("Failed to load sleep data: \(error.localizedDescription)")
         }
@@ -148,7 +160,7 @@ class SleepHistoryViewModel: ObservableObject {
     /// - Parameter date: The date to normalize.
     /// - Parameter isFirstDay: A boolean flag indicating whether it’s the first day. If `false`, the date will be adjusted to the next day.
     /// - Returns: A `Date` object normalized to the reference day with the same time components.
-    private func normalizeToReferenceDay(_ date: Date, isFirstDay: Bool) -> Date {
+    private func normalizeToReferenceDay(_ date: Date) -> Date {
         let components = calendar.dateComponents([.hour, .minute, .second], from: date)
         var baseComponents = DateComponents(
             calendar: calendar,
@@ -161,7 +173,7 @@ class SleepHistoryViewModel: ObservableObject {
             second: components.second
         )
 
-        if let hour = baseComponents.hour, hour < 12 && !isFirstDay {
+        if let hour = baseComponents.hour, hour < 12 {
             baseComponents.day! += 1
         }
 
