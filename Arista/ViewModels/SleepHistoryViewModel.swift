@@ -58,8 +58,6 @@ class SleepHistoryViewModel: ObservableObject {
             guard let sleep = self.getSleepSession(for: day) else { return nil }
             let start = self.normalizeToReferenceDay(sleep.startDate ?? day)
             let end = self.normalizeToReferenceDay(sleep.endDate)
-            print(end)
-            print(start)
             return ChartSleepData(day: day, start: start, end: end)
         }
     }
@@ -102,9 +100,12 @@ class SleepHistoryViewModel: ObservableObject {
     /// - Parameter date: The date for which to fetch the sleep session.
     /// - Returns: A `Sleep` object if a session is found, otherwise `nil`.
     func getSleepSession(for date: Date) -> Sleep? {
+        // date = jour de réveil
         let dayStart = calendar.startOfDay(for: date)
-        guard let lowerBound = calendar.date(byAdding: .hour, value: 20, to: dayStart),
-              let upperBound = calendar.date(byAdding: .hour, value: 34, to: dayStart) else {
+        
+        // Cherche une session de la veille 20h à aujourd’hui 10h
+        guard let lowerBound = calendar.date(byAdding: .hour, value: -4, to: dayStart), // 20h la veille
+              let upperBound = calendar.date(byAdding: .hour, value: 10, to: dayStart) else {
             return nil
         }
 
@@ -139,16 +140,6 @@ class SleepHistoryViewModel: ObservableObject {
     func fetchSleepSessions() {
         do {
             sleepSessions = try SleepRepository().getSleepSessions()
-            sleepSessions.forEach { sleep in
-                let formatter = DateFormatter()
-                formatter.timeStyle = .medium
-                formatter.dateStyle = .medium
-                formatter.timeZone = .current // Utilise le fuseau horaire local
-                let start = formatter.string(from: sleep.startDate ?? .now)
-                let end = formatter.string(from: sleep.endDate)
-                print(start)
-                print(end)
-            }
         } catch {
             print("Failed to load sleep data: \(error.localizedDescription)")
         }
