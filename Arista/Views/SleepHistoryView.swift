@@ -11,6 +11,14 @@ import Charts
 struct SleepHistoryView: View {
     @ObservedObject var viewModel: SleepHistoryViewModel
     @State private var selectedDate: Date?
+    @State private var showSheet = false
+    var formatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.timeStyle = .medium
+        formatter.dateStyle = .medium
+        formatter.timeZone = .current
+        return formatter
+    }
 
     var body: some View {
         NavigationStack {
@@ -49,6 +57,18 @@ struct SleepHistoryView: View {
             .padding()
             .navigationTitle("Sommeil")
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("Ajouter des données") {
+                        showSheet = true
+                    }
+                }
+            }
+            .sheet(isPresented: $showSheet, onDismiss: viewModel.fetchSleepSessions) {
+                NavigationStack {
+                    AddSleepSessionView()
+                }
+            }
         }
     }
     

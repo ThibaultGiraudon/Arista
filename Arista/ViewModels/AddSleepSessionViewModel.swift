@@ -30,10 +30,6 @@ class AddSleepSessionViewModel: ObservableObject {
     private func updateDuration() {
         let timeInterval = endDate.timeIntervalSince(startDate)
         let newDuration = Int(timeInterval / 60)
-        print(duration)
-        print(newDuration)
-        if abs(duration - newDuration) > 1 {
-            duration = newDuration
-        }
+        duration = newDuration
     }
 }

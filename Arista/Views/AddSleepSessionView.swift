@@ -8,22 +8,21 @@
 import SwiftUI
 
 struct AddSleepSessionView: View {
-    @ObservedObject var viewModel: AddSleepSessionViewModel
+    @StateObject var viewModel = AddSleepSessionViewModel()
     @Environment(\.dismiss) var dismiss
     var body: some View {
         Form {
-            Section {
-                DatePicker("Heure de couché", selection: $viewModel.startDate)
-                DatePicker("Heure de reveil", selection: $viewModel.endDate)
-                Picker("Qualité", selection: $viewModel.quality) {
-                    ForEach(0...10, id: \.self) { value in
-                        Text("\(value)")
-                    }
-                }
-                .pickerStyle(.wheel)
+            Section("Perdiode") {
+                DatePicker("Début:", selection: $viewModel.startDate, in: ...Date.now)
+                DatePicker("Fin:", selection: $viewModel.endDate, in: viewModel.startDate...Date.now)
+            }
+            Section("Qualité") {
+                SleepQualityPicker(quality: $viewModel.quality)
+                    .padding(.vertical, 20)
             }
         }
-        .navigationTitle("Ajouter une période de sommeil")
+        .navigationTitle("Sommeil")
+        .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .cancellationAction) {
                 Button("Annuler") {
@@ -33,6 +32,7 @@ struct AddSleepSessionView: View {
             ToolbarItem(placement: .confirmationAction) {
                 Button("Ajouter") {
                     viewModel.addSleepSession()
+                    dismiss()
                 }
             }
         }
@@ -41,6 +41,6 @@ struct AddSleepSessionView: View {
 
 #Preview {
     NavigationStack {
-        AddSleepSessionView(viewModel: AddSleepSessionViewModel())
+        AddSleepSessionView()
     }
 }
