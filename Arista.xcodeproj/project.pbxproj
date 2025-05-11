@@ -15,19 +15,10 @@
 		53E587512B235E9000E4EF99 /* AristaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E587502B235E9000E4EF99 /* AristaUITests.swift */; };
 		53E587532B235E9000E4EF99 /* AristaUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E587522B235E9000E4EF99 /* AristaUITestsLaunchTests.swift */; };
 		53E587632B235FF600E4EF99 /* UserDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E587622B235FF600E4EF99 /* UserDataView.swift */; };
-		53E587652B23600400E4EF99 /* ExerciseListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E587642B23600400E4EF99 /* ExerciseListView.swift */; };
-		53E587672B23600C00E4EF99 /* SleepHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E587662B23600C00E4EF99 /* SleepHistoryView.swift */; };
 		53E587692B23616A00E4EF99 /* UserDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E587682B23616A00E4EF99 /* UserDataViewModel.swift */; };
 		53E5876B2B23648500E4EF99 /* ExerciseListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E5876A2B23648500E4EF99 /* ExerciseListViewModel.swift */; };
-		53E5876D2B236D9E00E4EF99 /* AddExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E5876C2B236D9E00E4EF99 /* AddExerciseView.swift */; };
 		53E5876F2B236DBC00E4EF99 /* AddExerciseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E5876E2B236DBC00E4EF99 /* AddExerciseViewModel.swift */; };
 		53E587712B23714800E4EF99 /* SleepHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E587702B23714800E4EF99 /* SleepHistoryViewModel.swift */; };
-		CE5B64992DCCA4710091DA59 /* SleepQualityPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5B64982DCCA4710091DA59 /* SleepQualityPicker.swift */; };
-		CE5B649B2DD0A9170091DA59 /* SleepSessionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5B649A2DD0A9170091DA59 /* SleepSessionListView.swift */; };
-		CE663E1C2DC7595C00793F91 /* IntensityPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE663E1B2DC7595C00793F91 /* IntensityPickerView.swift */; };
-		CE663E412DC7A02600793F91 /* IntensityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE663E402DC7A02600793F91 /* IntensityView.swift */; };
-		CE663E452DC90E9C00793F91 /* SleepIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE663E442DC90E9C00793F91 /* SleepIndicatorView.swift */; };
-		CE663E472DC91CDE00793F91 /* AddSleepSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE663E462DC91CDE00793F91 /* AddSleepSessionView.swift */; };
 		CE663E492DC91CF400793F91 /* AddSleepSessionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE663E482DC91CF400793F91 /* AddSleepSessionViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -60,23 +51,16 @@
 		53E587502B235E9000E4EF99 /* AristaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AristaUITests.swift; sourceTree = "<group>"; };
 		53E587522B235E9000E4EF99 /* AristaUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AristaUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		53E587622B235FF600E4EF99 /* UserDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataView.swift; sourceTree = "<group>"; };
-		53E587642B23600400E4EF99 /* ExerciseListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseListView.swift; sourceTree = "<group>"; };
-		53E587662B23600C00E4EF99 /* SleepHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepHistoryView.swift; sourceTree = "<group>"; };
 		53E587682B23616A00E4EF99 /* UserDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataViewModel.swift; sourceTree = "<group>"; };
 		53E5876A2B23648500E4EF99 /* ExerciseListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseListViewModel.swift; sourceTree = "<group>"; };
-		53E5876C2B236D9E00E4EF99 /* AddExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExerciseView.swift; sourceTree = "<group>"; };
 		53E5876E2B236DBC00E4EF99 /* AddExerciseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExerciseViewModel.swift; sourceTree = "<group>"; };
 		53E587702B23714800E4EF99 /* SleepHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepHistoryViewModel.swift; sourceTree = "<group>"; };
-		CE5B64982DCCA4710091DA59 /* SleepQualityPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepQualityPicker.swift; sourceTree = "<group>"; };
-		CE5B649A2DD0A9170091DA59 /* SleepSessionListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepSessionListView.swift; sourceTree = "<group>"; };
-		CE663E1B2DC7595C00793F91 /* IntensityPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntensityPickerView.swift; sourceTree = "<group>"; };
-		CE663E402DC7A02600793F91 /* IntensityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntensityView.swift; sourceTree = "<group>"; };
-		CE663E442DC90E9C00793F91 /* SleepIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepIndicatorView.swift; sourceTree = "<group>"; };
-		CE663E462DC91CDE00793F91 /* AddSleepSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSleepSessionView.swift; sourceTree = "<group>"; };
 		CE663E482DC91CF400793F91 /* AddSleepSessionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSleepSessionViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		CE5B64B42DD102D60091DA59 /* Exercice */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Exercice; sourceTree = "<group>"; };
+		CE5B64B52DD102E50091DA59 /* Sleep */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Sleep; sourceTree = "<group>"; };
 		CE663E1D2DC78D3600793F91 /* Models */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Models; sourceTree = "<group>"; };
 		CE663E262DC78D4000793F91 /* Repositories */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Repositories; sourceTree = "<group>"; };
 		CE663E292DC78DA300793F91 /* Utiles */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Utiles; sourceTree = "<group>"; };
@@ -172,15 +156,8 @@
 			isa = PBXGroup;
 			children = (
 				53E587622B235FF600E4EF99 /* UserDataView.swift */,
-				53E587642B23600400E4EF99 /* ExerciseListView.swift */,
-				53E587662B23600C00E4EF99 /* SleepHistoryView.swift */,
-				53E5876C2B236D9E00E4EF99 /* AddExerciseView.swift */,
-				CE663E1B2DC7595C00793F91 /* IntensityPickerView.swift */,
-				CE663E402DC7A02600793F91 /* IntensityView.swift */,
-				CE663E442DC90E9C00793F91 /* SleepIndicatorView.swift */,
-				CE663E462DC91CDE00793F91 /* AddSleepSessionView.swift */,
-				CE5B64982DCCA4710091DA59 /* SleepQualityPicker.swift */,
-				CE5B649A2DD0A9170091DA59 /* SleepSessionListView.swift */,
+				CE5B64B42DD102D60091DA59 /* Exercice */,
+				CE5B64B52DD102E50091DA59 /* Sleep */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -213,6 +190,8 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				CE5B64B42DD102D60091DA59 /* Exercice */,
+				CE5B64B52DD102E50091DA59 /* Sleep */,
 				CE663E1D2DC78D3600793F91 /* Models */,
 				CE663E262DC78D4000793F91 /* Repositories */,
 				CE663E292DC78DA300793F91 /* Utiles */,
@@ -335,19 +314,10 @@
 				CE663E492DC91CF400793F91 /* AddSleepSessionViewModel.swift in Sources */,
 				53E587712B23714800E4EF99 /* SleepHistoryViewModel.swift in Sources */,
 				53E587632B235FF600E4EF99 /* UserDataView.swift in Sources */,
-				53E587672B23600C00E4EF99 /* SleepHistoryView.swift in Sources */,
 				53E587312B235E8F00E4EF99 /* AristaApp.swift in Sources */,
-				CE5B649B2DD0A9170091DA59 /* SleepSessionListView.swift in Sources */,
-				CE663E472DC91CDE00793F91 /* AddSleepSessionView.swift in Sources */,
-				53E587652B23600400E4EF99 /* ExerciseListView.swift in Sources */,
-				CE5B64992DCCA4710091DA59 /* SleepQualityPicker.swift in Sources */,
 				53E5876B2B23648500E4EF99 /* ExerciseListViewModel.swift in Sources */,
-				CE663E1C2DC7595C00793F91 /* IntensityPickerView.swift in Sources */,
 				53E5873D2B235E9000E4EF99 /* Arista.xcdatamodeld in Sources */,
-				53E5876D2B236D9E00E4EF99 /* AddExerciseView.swift in Sources */,
-				CE663E452DC90E9C00793F91 /* SleepIndicatorView.swift in Sources */,
 				53E5876F2B236DBC00E4EF99 /* AddExerciseViewModel.swift in Sources */,
-				CE663E412DC7A02600793F91 /* IntensityView.swift in Sources */,
 				53E587692B23616A00E4EF99 /* UserDataViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
