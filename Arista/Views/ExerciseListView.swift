@@ -15,7 +15,7 @@ struct ExerciseListView: View {
         NavigationView {
                 VStack(alignment: .leading) {
                     List(viewModel.exercisesPerMonth.sorted(by: { $0.key > $1.key }), id: \.key) { month, exercices in
-                        Section("\(month, format: .dateTime.month().year())") {
+                        Section("\(month.formatted("MMMM YYYY"))") {
                             ForEach(exercices, id: \.self) { exercice in
                                 HStack {
                                     Image(systemName: iconForCategory(exercice.category ?? ""))

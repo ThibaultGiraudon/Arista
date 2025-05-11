@@ -12,17 +12,10 @@ struct SleepHistoryView: View {
     @ObservedObject var viewModel: SleepHistoryViewModel
     @State private var selectedDate: Date?
     @State private var showSheet = false
-    var formatter: DateFormatter {
-        let formatter = DateFormatter()
-        formatter.timeStyle = .medium
-        formatter.dateStyle = .medium
-        formatter.timeZone = .current
-        return formatter
-    }
 
     var body: some View {
         NavigationStack {
-            ScrollView {
+            VStack {
                 Chart(viewModel.chartDatas, id: \.self) { data in
                     BarMark(
                         x: .value("Jour", data.day, unit: .day),
@@ -51,10 +44,16 @@ struct SleepHistoryView: View {
                 }
                 .chartYScale(domain: viewModel.yRange)
                 .chartXScale(domain: viewModel.xRange)
-                .padding(.top)
+                .padding()
                 .frame(height: 400)
+                Form {
+                    NavigationLink {
+                        SleepSessionListView(sleepSessions: viewModel.mappedSessions)
+                    } label: {
+                        Text("Afficher toutes les données")
+                    }
+                }
             }
-            .padding()
             .navigationTitle("Sommeil")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -68,6 +67,9 @@ struct SleepHistoryView: View {
                 NavigationStack {
                     AddSleepSessionView()
                 }
+            }
+            .onAppear {
+                print(viewModel.mappedSessions.count)
             }
         }
     }

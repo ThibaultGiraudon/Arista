@@ -19,16 +19,16 @@ struct SleepQualityPicker: View {
                     let totalWidth = geo.size.width - 40
                     let step = totalWidth / 10
                 ZStack(alignment: .leading) {
-                    // Fond gris
+                    // Gray background
                     Capsule()
                         .fill(.gray.opacity(0.2))
                     
-                    // Remplissage rose
+                    // Quality indicator
                     Capsule()
                         .foregroundStyle(LinearGradient(colors: gradientColors(), startPoint: .leading, endPoint: .trailing))
                         .frame(width: currentWidth(for: totalWidth))
                     
-                    // Les 10 cercles (1 à 10)
+                    // All values
                     HStack(spacing: 0) {
                         ForEach(0..<10, id: \.self) { index in
                             Circle()
@@ -50,6 +50,7 @@ struct SleepQualityPicker: View {
                 )
                 .padding(.horizontal, 20)
                 .gesture(
+                    // Gesture allowing user to slide the cursor
                     DragGesture()
                         .onChanged { value in
                             width = value.translation.width
@@ -73,11 +74,15 @@ struct SleepQualityPicker: View {
         }
     }
     
+    /// Returns the indicator width between 0 and the width of the view
+    /// - Parameter for: the width of the view
+    /// - Returns: a `CGFloat` representing the size of the indicator
     func currentWidth(for totalWidth: CGFloat) -> CGFloat {
         return min(max(initialWidth + width, 0), totalWidth)
     }
     
-    /// - Note: Change colors
+    /// Returns the gradient colors depending the quality
+    /// - Returns: an Array of `Color` representig the quality
     func gradientColors() -> [Color] {
         let colors: [Color] = [.red, .orange, .yellow, .green.opacity(0.6), .green]
         let gradient = colors.prefix(Int(round(Double(quality) / 2.0)))

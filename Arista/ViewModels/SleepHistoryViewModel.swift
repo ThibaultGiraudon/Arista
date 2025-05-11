@@ -18,7 +18,10 @@ struct ChartSleepData: Identifiable, Hashable {
 
 class SleepHistoryViewModel: ObservableObject {
     @Published var sleepSessions = [Sleep]()
+    @Published var mappedSessions = [Date: [Sleep]]()
     @Published var date = Date.now
+    
+    static let shared = SleepHistoryViewModel()
 
     private var calendar: Calendar
     private let timeZone: TimeZone
@@ -76,12 +79,13 @@ class SleepHistoryViewModel: ObservableObject {
             }
     }
 
-    init(context: NSManagedObjectContext) {
+    init(context: NSManagedObjectContext = PersistenceController.shared.container.viewContext) {
         self.viewContext = context
         self.calendar = Calendar.current
         self.timeZone = TimeZone(secondsFromGMT: 3600)! // France
         calendar.timeZone = timeZone
         fetchSleepSessions()
+        mapSleepSessions()
     }
 
     // MARK: - Public API
@@ -145,6 +149,27 @@ class SleepHistoryViewModel: ObservableObject {
         }
     }
     
+    private func mapSleepSessions() {
+        mappedSessions = Dictionary(grouping: sleepSessions) { sleep -> Date in
+            guard let start = sleep.startDate else { return .now }
+            let startComponents = Calendar.current.dateComponents([.day, .month], from: start)
+            let endComponents = Calendar.current.dateComponents([.day, .month], from: sleep.endDate)
+            
+            if startComponents == endComponents {
+                if let newDay = Calendar.current.date(byAdding: .day, value: -1, to: start) {
+                    let newDayComponent = Calendar.current.dateComponents([.day, .month], from: newDay)
+                    if let date = Calendar.current.date(from: newDayComponent) {
+                        return date
+                    }
+                }
+            }
+            if let date = Calendar.current.date(from: startComponents) {
+                return date
+            }
+            return .now
+        }
+    }
+
     /// Normalizes a given date to a reference day (January 1, 2000).
     /// The normalized date will have the same time (hour, minute, second) as the provided date.
     /// If the provided date is after midnight and it’s not the first day, it will be normalized to January 2, 2000.

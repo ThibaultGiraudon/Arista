@@ -25,9 +25,6 @@ class ExerciseListViewModel: ObservableObject {
             let components = try ExerciceRepository().getExercices()
             exercisesPerMonth = Dictionary(grouping: components) { exercise -> Date in
                 let components = Calendar.current.dateComponents([.year, .month], from: exercise.date ?? .now)
-                let formatter = DateFormatter()
-                formatter.locale = .current
-                formatter.dateFormat = "MMMM yyyy"
                 if let date = Calendar.current.date(from: components) {
                     return date
                 }

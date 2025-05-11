@@ -109,19 +109,24 @@ struct IntensityPickerView: View {
         }
     }
 
-    // Calculate currentIntensity during dragGesture
+    /// Calculate intensity during dragGesture
+    /// - Parameter for: the DragGesture offset
+    /// - Returns: an `Int` representing the quality
     private func currentIntensity(for offset: CGFloat = 0.0) -> Int {
         let xPos = xOffset(for: offset)
         let rawIndex = Int(round(xPos / (barWidth + spacing))) + 1
         return min(max(rawIndex, 1), totalBars)
     }
 
-    // Calcuate intensity position
+    /// Calcuate the offset to place the bar
+    /// - Parameter for: the DragGesture offset
+    /// - Returns: a `CGFloat` to place the bar on the right place
     private func xOffset(for offset: CGFloat) -> CGFloat {
         CGFloat(viewModel.currentIntensity - 1) * (barWidth + spacing) + offset
     }
     
-    // Activate haptic feedback
+    /// Activate different haptic style depending on the quality
+    /// - Parameter with: the current quality
     private func hapticFeedback(with value: Int) {
         let style: UIImpactFeedbackGenerator.FeedbackStyle = {
             switch value {

@@ -30,11 +30,9 @@ struct DefaultData {
             
 
             if try sleepRepository.getSleepSessions().isEmpty {
-                // Exemples : 7 sessions récentes (heure de coucher au même jour que réveil)
                 let sleepData: [(day: Int, month: Int, hour: Int, minute: Int, duration: Int)] = [
                     (5, 05 ,0, 43, 480),   // 8h00
                     (5, 05, 23, 57, 405),  // 6h45
-                    (6, 05, 1, 15, 390),   // 6h30
                     (7, 05, 0, 30, 510),   // 8h30
                     (7, 05, 22, 50, 465),  // 7h45
                     (8, 05, 23, 10, 420),  // 7h00
@@ -49,7 +47,7 @@ struct DefaultData {
 
                     let dateComponents = DateComponents(
                         calendar: calendar,
-                        timeZone: TimeZone.current, // Ou spécifiquement TimeZone(identifier: "Europe/Paris")
+                        timeZone: TimeZone.current,
                         year: year,
                         month: data.month,
                         day: data.day,
@@ -61,7 +59,7 @@ struct DefaultData {
                     guard let startDate = calendar.date(from: dateComponents) else { continue }
 
                     sleep.startDate = startDate
-                    sleep.duration = Int64(data.duration) // minutes
+                    sleep.duration = Int64(data.duration)
                     sleep.quality = Int16.random(in: 0...10)
                     sleep.user = initialUser
                 }
