@@ -64,6 +64,51 @@ class SleepHistoryViewModel: ObservableObject {
             return ChartSleepData(day: day, start: start, end: end)
         }
     }
+    
+    var averageSleep: Int {
+        var total = 0
+        
+        sleepSessions.forEach { total += Int($0.duration) }
+        
+        guard sleepSessions.count > 0 else { return 0 }
+        
+        return total / 60 / sleepSessions.count
+    }
+    
+    var averageStartHour: Int {
+        var total = 0
+        
+        for sleepSession in sleepSessions {
+            guard let start = sleepSession.startDate else { continue }
+            let component = calendar.dateComponents([.hour, .minute], from: start)
+            guard let hour = component.hour, let minute = component.minute else { continue }
+            
+            var minutes = (hour + 1) * 60 + minute
+            if hour < 5 {
+                minutes += 1440
+            }
+            
+            total += minutes
+        }
+        
+        guard sleepSessions.count > 0 else { return 0 }
+        
+        
+        return total / sleepSessions.count
+    }
+    
+    var averageEndHour: Int {
+        var total = 0
+        for sleepSession in sleepSessions {
+            let component = calendar.dateComponents([.hour, .minute], from: sleepSession.endDate)
+            guard let hour = component.hour, let minute = component.minute else { continue }
+            total += hour * 60 + minute
+        }
+        
+        guard sleepSessions.count > 0 else { return 0 }
+        
+        return total / sleepSessions.count
+    }
 
     /// A gesture that allows the user to navigate between weeks.
     /// Swiping left advances to the next week, while swiping right goes back to the previous one.

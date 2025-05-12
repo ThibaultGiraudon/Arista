@@ -27,7 +27,7 @@ class AddExerciseViewModel: ObservableObject {
         .interpolateColors(from: (130, 60, 102), to: (57, 17, 29), steps: 10)
     ]
     @Published var currentIntensity: Int = 5
-    func  effort(for value: Int) -> String {
+    func effort(for value: Int) -> String {
         switch value {
             case 1...3:
                 return "Facile"
