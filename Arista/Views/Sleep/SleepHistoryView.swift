@@ -52,8 +52,16 @@ struct SleepHistoryView: View {
                     } label: {
                         Text("Afficher toutes les données")
                     }
+                    .listRowBackground(Color("OffWhite"))
                 }
+                .scrollDisabled(true)
+                .scrollContentBackground(.hidden)
             }
+            .background {
+                Color("DimGray")
+                    .ignoresSafeArea()
+            }
+            .foregroundStyle(Color("TextColor"))
             .navigationTitle("Sommeil")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
