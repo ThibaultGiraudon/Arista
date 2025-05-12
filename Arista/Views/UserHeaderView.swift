@@ -1,3 +1,12 @@
+//
+//  UserHeaderView.swift
+//  Arista
+//
+//  Created by Thibault Giraudon on 12/05/2025.
+//
+
+import SwiftUI
+
 struct UserHeaderView: View {
     @ObservedObject var viewModel: UserDataViewModel
 
@@ -16,4 +25,8 @@ struct UserHeaderView: View {
             .padding()
         }
     }
+}
+
+#Preview {
+    UserHeaderView(viewModel: UserDataViewModel())
 }

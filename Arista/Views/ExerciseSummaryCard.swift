@@ -1,3 +1,12 @@
+//
+//  ExerciseSummaryCard.swift
+//  Arista
+//
+//  Created by Thibault Giraudon on 12/05/2025.
+//
+
+import SwiftUI
+
 struct ExerciseSummaryCard: View {
     @ObservedObject var viewModel: ExerciseListViewModel
 
@@ -8,7 +17,7 @@ struct ExerciseSummaryCard: View {
             VStack(alignment: .leading) {
                 let lastExercise = viewModel.exercises.last
 
-                HeaderRow(icon: "flame.fill", title: "Activité", date: lastExercise?.date)
+                HeaderRow(icon: "flame.fill", title: "Activité", date: lastExercise?.date, isNav: true)
                     .foregroundStyle(.red)
 
                 if let exercise = lastExercise {
@@ -31,4 +40,8 @@ struct ExerciseSummaryCard: View {
             .cardBackground()
         }
     }
+}
+
+#Preview {
+    ExerciseSummaryCard(viewModel: ExerciseListViewModel())
 }

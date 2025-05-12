@@ -1,3 +1,12 @@
+//
+//  TrendsSection.swift
+//  Arista
+//
+//  Created by Thibault Giraudon on 12/05/2025.
+//
+
+import SwiftUI
+
 struct TrendsSection: View {
     let exerciseVM: ExerciseListViewModel
     let sleepVM: SleepHistoryViewModel
@@ -21,4 +30,8 @@ struct TrendsSection: View {
         }
         .cardBackground()
     }
+}
+
+#Preview {
+    TrendsSection(exerciseVM: ExerciseListViewModel(), sleepVM: SleepHistoryViewModel())
 }

@@ -1,3 +1,12 @@
+//
+//  TrendCard.swift
+//  Arista
+//
+//  Created by Thibault Giraudon on 12/05/2025.
+//
+
+import SwiftUI
+
 struct TrendCard: View {
     let title: String
     let value: String
@@ -5,7 +14,7 @@ struct TrendCard: View {
     let color: Color
 
     var body: some View {
-        HStack {
+        HStack(spacing: 0) {
             Image(systemName: "minus")
                 .padding(15)
                 .font(.title.bold())
@@ -25,4 +34,8 @@ struct TrendCard: View {
             }
         }
     }
+}
+
+#Preview {
+    TrendCard(title: "M'entrainer", value: "29", unit: "MIN/JOUR", color: .green)
 }

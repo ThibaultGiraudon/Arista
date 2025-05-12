@@ -1,3 +1,12 @@
+//
+//  SleepSummaryCard.swift
+//  Arista
+//
+//  Created by Thibault Giraudon on 12/05/2025.
+//
+
+import SwiftUI
+
 struct SleepSummaryCard: View {
     @ObservedObject var viewModel: SleepHistoryViewModel
 
@@ -8,7 +17,7 @@ struct SleepSummaryCard: View {
             VStack(alignment: .leading) {
                 let lastSleep = viewModel.sleepSessions.last ?? Sleep()
 
-                HeaderRow(icon: "bed.double.fill", title: "Sommeil", date: lastSleep.endDate)
+                HeaderRow(icon: "bed.double.fill", title: "Sommeil", date: lastSleep.endDate, isNav: true)
                     .foregroundStyle(.teal)
 
                 Text("Durée")
@@ -22,4 +31,8 @@ struct SleepSummaryCard: View {
             .cardBackground()
         }
     }
+}
+
+#Preview {
+    SleepSummaryCard(viewModel: SleepHistoryViewModel())
 }

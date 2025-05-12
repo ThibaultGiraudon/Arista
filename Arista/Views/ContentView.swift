@@ -7,9 +7,42 @@
 
 import SwiftUI
 
+extension View {
+    func cardBackground(_ length: CGFloat = 20) -> some View {
+        self
+            .padding(length)
+            .background {
+                RoundedRectangle(cornerRadius: 15)
+                    .fill(Color("OffWhite"))
+            }
+            .foregroundStyle(Color("TextColor"))
+    }
+}
+
 struct ContentView: View {
+    @StateObject private var sleepVM = SleepHistoryViewModel()
+    @StateObject private var exerciseVM = ExerciseListViewModel()
+    @StateObject private var userVM = UserDataViewModel()
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack {
+            ScrollView {
+                // TODO allow user to reorganize ?
+                VStack(spacing: 20) {
+                    // TODO moves in overlay ?
+                    UserHeaderView(viewModel: userVM)
+                    // TODO invert order
+                    ExerciseSummaryCard(viewModel: exerciseVM)
+                    CaloriesCard(calories: exerciseVM.calOfDay)
+                    // TODO invert order
+                    SleepSummaryCard(viewModel: sleepVM)
+                    // TODO calcul trend on last 7 week and compare with other data ?
+                    TrendsSection(exerciseVM: exerciseVM, sleepVM: sleepVM)
+                }
+                .padding(.horizontal)
+            }
+            .background(Color("DimGray").ignoresSafeArea())
+        }
     }
 }
 
