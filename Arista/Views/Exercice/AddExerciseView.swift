@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AddExerciseView: View {
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) var dismiss
     @ObservedObject var viewModel: AddExerciseViewModel
     @State private var showIntensityPicker = false
 
@@ -28,30 +28,25 @@ struct AddExerciseView: View {
                     Button {
                         showIntensityPicker = true
                     } label: {
-                        HStack {
-                            Text("\(viewModel.intensity)")
-                                .foregroundStyle(viewModel.currentColor)
-                                .font(.title.bold())
-                                .padding()
-                                .background {
-                                    Circle()
-                                        .foregroundStyle(viewModel.currentColor.opacity(0.3))
-                                }
-                            Spacer()
-                            IntensityView(intensity: viewModel.intensity)
-                        }
+                        IntensityRowView(intensity: viewModel.intensity)
                     }
                 }
-            }.formStyle(.grouped)
-            Spacer()
-            Button("Ajouter l'exercice") {
-                if viewModel.addExercise() {
-                    presentationMode.wrappedValue.dismiss()
-                }
-            }.buttonStyle(.borderedProminent)
-                
+            }
         }
         .navigationTitle("Nouvel Exercice ...")
+        .toolbar {
+            ToolbarItem(placement: .cancellationAction) {
+                Button("Annuler") {
+                    dismiss()
+                }
+            }
+            
+            ToolbarItem(placement: .confirmationAction) {
+                Button("Ajouter") {
+                     _ = viewModel.addExercise()
+                }
+            }
+        }
         .sheet(isPresented: $showIntensityPicker) {
             NavigationStack {
                 IntensityPickerView(viewModel: viewModel)

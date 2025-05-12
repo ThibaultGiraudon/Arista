@@ -18,7 +18,7 @@ struct IntensityView: View {
             ForEach(0...totalBars, id: \.self) { value in
                 RoundedRectangle(cornerRadius: 3)
                     .frame(width: barWidth, height: CGFloat(value) * 7)
-                    .foregroundStyle(value == Int(round(Double(intensity) / 2.0)) ? color() : .secondary)
+                    .foregroundStyle(value <= Int(round(Double(intensity) / 2.0)) ? color() : .secondary)
             }
         }
     }
@@ -26,29 +26,33 @@ struct IntensityView: View {
     func color() -> Color {
         switch intensity {
             case 1:
-                return Color(60, 113, 85)
+                return Color(105, 201, 142)
             case 2:
-                return Color(54, 116, 108)
+                return Color(96, 208, 188)
             case 3:
-                return Color(47, 100, 120)
+                return Color(81, 177, 211)
             case 4:
-                return Color(66, 98, 137)
+                return Color(109, 172, 249)
             case 5:
-                return Color(51, 62, 87)
+                return Color(78, 90, 230)
             case 6:
-                return Color(75, 63, 137)
+                return Color(125, 100, 247)
             case 7:
-                return Color(100, 70, 137)
+                return Color(175, 116, 248)
             case 8:
-                return Color(108, 62, 138)
+                return Color(191, 98, 248)
             case 9:
-                return Color(132, 70, 126)
+                return Color(239, 117, 225)
             default:
-                return Color(130, 60, 102)
+                return Color(237, 98, 178)
         }
     }
+
 }
 
 #Preview {
-    IntensityView(intensity: 10)
+    IntensityView(intensity: 5)
+        .background {
+            Color("OffWhite")
+        }
 }

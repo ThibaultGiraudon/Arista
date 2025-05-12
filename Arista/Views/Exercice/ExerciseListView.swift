@@ -13,33 +13,26 @@ struct ExerciseListView: View {
     
     var body: some View {
         NavigationView {
-                VStack(alignment: .leading) {
-                    List(viewModel.exercisesPerMonth.sorted(by: { $0.key > $1.key }), id: \.key) { month, exercices in
-                        Section("\(month.formatted("MMMM YYYY"))") {
-                            ForEach(exercices, id: \.self) { exercice in
-                                HStack {
-                                    Image(systemName: iconForCategory(exercice.category ?? ""))
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .frame(width: 50, height: 50)
-                                        .padding()
-                                        .background {
-                                            Circle()
-                                                .foregroundStyle(.gray.opacity(0.2))
-                                        }
-                                    VStack(alignment: .leading) {
-                                        Text(exercice.category ?? "")
-                                            .font(.title3)
-                                        Text("\(exercice.duration) min")
-                                            .font(.largeTitle)
-                                    }
-                                    Spacer()
-                                    IntensityView(intensity: Int(exercice.intensity))
-                                }
+            VStack(alignment: .leading) {
+                List(viewModel.exercisesPerMonth.sorted(by: { $0.key > $1.key }), id: \.key) { month, exercices in
+                    Section("\(month.formatted("MMMM YYYY"))") {
+                        ForEach(exercices, id: \.self) { exercise in
+                            NavigationLink {
+                                ExerciseDetailView(exercise: exercise)
+                            } label: {
+                                ExerciseRowView(exercise: exercise)
                             }
                         }
                     }
+                    .listRowBackground(Color("OffWhite"))
                 }
+                .scrollContentBackground(.hidden)
+            }
+            .background {
+                Color("DimGray")
+                    .ignoresSafeArea()
+            }
+            .foregroundStyle(Color("TextColor"))
             .navigationTitle("Exercices")
             .navigationBarItems(trailing: Button(action: {
                 showingAddExerciseView = true
@@ -51,16 +44,6 @@ struct ExerciseListView: View {
             AddExerciseView(viewModel: AddExerciseViewModel(context: viewModel.viewContext))
         }
         
-    }
-    
-    func iconForCategory(_ category: String) -> String {
-        var icon = "questionmark"
-        Category.allCases.forEach { value in
-            if value.rawValue == category {
-                icon = value.icon
-            }
-        }
-        return icon
     }
 }
 

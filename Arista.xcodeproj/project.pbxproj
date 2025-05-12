@@ -20,6 +20,15 @@
 		53E5876F2B236DBC00E4EF99 /* AddExerciseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E5876E2B236DBC00E4EF99 /* AddExerciseViewModel.swift */; };
 		53E587712B23714800E4EF99 /* SleepHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E587702B23714800E4EF99 /* SleepHistoryViewModel.swift */; };
 		CE663E492DC91CF400793F91 /* AddSleepSessionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE663E482DC91CF400793F91 /* AddSleepSessionViewModel.swift */; };
+		CE96E1732DD103290091BE11 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE96E1722DD103290091BE11 /* ContentView.swift */; };
+		CE96E1772DD1FB4D0091BE11 /* HeaderRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE96E1762DD1FB4D0091BE11 /* HeaderRow.swift */; };
+		CE96E1792DD1FB5F0091BE11 /* TrendCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE96E1782DD1FB5F0091BE11 /* TrendCard.swift */; };
+		CE96E17B2DD1FB6B0091BE11 /* TrendsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE96E17A2DD1FB6B0091BE11 /* TrendsSection.swift */; };
+		CE96E17D2DD1FB790091BE11 /* SleepSummaryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE96E17C2DD1FB790091BE11 /* SleepSummaryCard.swift */; };
+		CE96E17F2DD1FB850091BE11 /* CaloriesCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE96E17E2DD1FB850091BE11 /* CaloriesCard.swift */; };
+		CE96E1812DD1FB910091BE11 /* ExerciseSummaryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE96E1802DD1FB910091BE11 /* ExerciseSummaryCard.swift */; };
+		CE96E1832DD1FB9E0091BE11 /* UserHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE96E1822DD1FB9E0091BE11 /* UserHeaderView.swift */; };
+		CE96E18B2DD22C980091BE11 /* IntensityRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE96E18A2DD22C980091BE11 /* IntensityRowView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +65,15 @@
 		53E5876E2B236DBC00E4EF99 /* AddExerciseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExerciseViewModel.swift; sourceTree = "<group>"; };
 		53E587702B23714800E4EF99 /* SleepHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepHistoryViewModel.swift; sourceTree = "<group>"; };
 		CE663E482DC91CF400793F91 /* AddSleepSessionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSleepSessionViewModel.swift; sourceTree = "<group>"; };
+		CE96E1722DD103290091BE11 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		CE96E1762DD1FB4D0091BE11 /* HeaderRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderRow.swift; sourceTree = "<group>"; };
+		CE96E1782DD1FB5F0091BE11 /* TrendCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendCard.swift; sourceTree = "<group>"; };
+		CE96E17A2DD1FB6B0091BE11 /* TrendsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsSection.swift; sourceTree = "<group>"; };
+		CE96E17C2DD1FB790091BE11 /* SleepSummaryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepSummaryCard.swift; sourceTree = "<group>"; };
+		CE96E17E2DD1FB850091BE11 /* CaloriesCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaloriesCard.swift; sourceTree = "<group>"; };
+		CE96E1802DD1FB910091BE11 /* ExerciseSummaryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseSummaryCard.swift; sourceTree = "<group>"; };
+		CE96E1822DD1FB9E0091BE11 /* UserHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHeaderView.swift; sourceTree = "<group>"; };
+		CE96E18A2DD22C980091BE11 /* IntensityRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntensityRowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -155,9 +173,18 @@
 		53E587602B235FD700E4EF99 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CE96E1822DD1FB9E0091BE11 /* UserHeaderView.swift */,
+				CE96E1802DD1FB910091BE11 /* ExerciseSummaryCard.swift */,
+				CE96E17E2DD1FB850091BE11 /* CaloriesCard.swift */,
+				CE96E17C2DD1FB790091BE11 /* SleepSummaryCard.swift */,
+				CE96E17A2DD1FB6B0091BE11 /* TrendsSection.swift */,
+				CE96E1782DD1FB5F0091BE11 /* TrendCard.swift */,
+				CE96E1762DD1FB4D0091BE11 /* HeaderRow.swift */,
 				53E587622B235FF600E4EF99 /* UserDataView.swift */,
 				CE5B64B42DD102D60091DA59 /* Exercice */,
 				CE5B64B52DD102E50091DA59 /* Sleep */,
+				CE96E1722DD103290091BE11 /* ContentView.swift */,
+				CE96E18A2DD22C980091BE11 /* IntensityRowView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -312,12 +339,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE663E492DC91CF400793F91 /* AddSleepSessionViewModel.swift in Sources */,
+				CE96E1812DD1FB910091BE11 /* ExerciseSummaryCard.swift in Sources */,
+				CE96E1772DD1FB4D0091BE11 /* HeaderRow.swift in Sources */,
 				53E587712B23714800E4EF99 /* SleepHistoryViewModel.swift in Sources */,
+				CE96E18B2DD22C980091BE11 /* IntensityRowView.swift in Sources */,
 				53E587632B235FF600E4EF99 /* UserDataView.swift in Sources */,
 				53E587312B235E8F00E4EF99 /* AristaApp.swift in Sources */,
+				CE96E17B2DD1FB6B0091BE11 /* TrendsSection.swift in Sources */,
 				53E5876B2B23648500E4EF99 /* ExerciseListViewModel.swift in Sources */,
 				53E5873D2B235E9000E4EF99 /* Arista.xcdatamodeld in Sources */,
 				53E5876F2B236DBC00E4EF99 /* AddExerciseViewModel.swift in Sources */,
+				CE96E17F2DD1FB850091BE11 /* CaloriesCard.swift in Sources */,
+				CE96E1732DD103290091BE11 /* ContentView.swift in Sources */,
+				CE96E1792DD1FB5F0091BE11 /* TrendCard.swift in Sources */,
+				CE96E17D2DD1FB790091BE11 /* SleepSummaryCard.swift in Sources */,
+				CE96E1832DD1FB9E0091BE11 /* UserHeaderView.swift in Sources */,
 				53E587692B23616A00E4EF99 /* UserDataViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
