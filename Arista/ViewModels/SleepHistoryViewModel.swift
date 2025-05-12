@@ -197,17 +197,8 @@ class SleepHistoryViewModel: ObservableObject {
     private func mapSleepSessions() {
         mappedSessions = Dictionary(grouping: sleepSessions) { sleep -> Date in
             guard let start = sleep.startDate else { return .now }
-            let startComponents = Calendar.current.dateComponents([.day, .month], from: start)
-            let endComponents = Calendar.current.dateComponents([.day, .month], from: sleep.endDate)
-            
-            if startComponents == endComponents {
-                if let newDay = Calendar.current.date(byAdding: .day, value: -1, to: start) {
-                    let newDayComponent = Calendar.current.dateComponents([.day, .month], from: newDay)
-                    if let date = Calendar.current.date(from: newDayComponent) {
-                        return date
-                    }
-                }
-            }
+            let startComponents = Calendar.current.dateComponents([.weekOfYear], from: start)
+
             if let date = Calendar.current.date(from: startComponents) {
                 return date
             }
