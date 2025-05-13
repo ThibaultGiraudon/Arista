@@ -43,7 +43,8 @@ struct AddExerciseView: View {
             
             ToolbarItem(placement: .confirmationAction) {
                 Button("Ajouter") {
-                     viewModel.addExercise()
+                    viewModel.addExercise()
+                    dismiss()
                 }
             }
         }

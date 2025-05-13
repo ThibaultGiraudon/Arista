@@ -9,8 +9,7 @@ import SwiftUI
 
 struct UserDataView: View {
     @ObservedObject var viewModel: UserDataViewModel
-    let weightValues: [Double] = stride(from: 30.0, through: 150, by: 0.5).map { Double(round(100*$0)/100) }
-    let sizeValues: [Int] = stride(from: 100, to: 230, by: 1).map { $0 }
+    
     let sleepValue: [Int] = stride(from: 6, to: 14, by: 1).map { $0 }
 
     var body: some View {
@@ -32,18 +31,40 @@ struct UserDataView: View {
             }
             .listRowBackground(Color("OffWhite"))
             Section("Renseignements") {
-                Picker("Poid (kg)", selection: $viewModel.weight) {
-                    ForEach(weightValues, id: \.self) { weight in
-                        Text(String(format: "%0.2f kg", weight))
-                    }
+                HStack {
+                    Text("Poid (kg)")
+                    TextField("", value: Binding(
+                        get: { viewModel.weight },
+                        set: { value in
+                            if value > 230 {
+                                viewModel.weight = 230
+                            }
+                            else if value < 30 {
+                                viewModel.weight = 30
+                            }
+                            else {
+                                viewModel.weight = value
+                            }
+                        }
+                    ), format: .number)
+                    .multilineTextAlignment(.trailing)
                 }
-                .background {
-                    Color("OffWhite")
-                }
-                Picker("Taille (cm)", selection: $viewModel.size) {
-                    ForEach(sizeValues, id: \.self) { size in
-                        Text("\(size) cm")
-                    }
+                HStack {
+                    Text("Taille (cm)")
+                    TextField("", value: Binding(
+                        get: { viewModel.size },
+                        set: { value in
+                            if value > 250 {
+                                viewModel.size = 250
+                            }
+                            else if value < 100 {
+                                viewModel.size = 100
+                            }
+                            else {
+                                viewModel.size = value
+                            }
+                        }), format: .number)
+                    .multilineTextAlignment(.trailing)
                 }
                 Picker("Heures de repos", selection: $viewModel.hoursSleep) {
                     ForEach(sleepValue, id: \.self) { sleep in
@@ -53,12 +74,20 @@ struct UserDataView: View {
             }
             .listRowBackground(Color("OffWhite"))
         }
+        .foregroundStyle(Color("TextColor"))
         .scrollContentBackground(.hidden)
+        .toolbar {
+            ToolbarItem(placement: .confirmationAction) {
+                Button("Save") {
+                    viewModel.saveUser()
+                }
+                .disabled(viewModel.shouldDisable)
+            }
+        }
         .background {
             Color("DimGray")
                 .ignoresSafeArea()
         }
-        .foregroundStyle(Color("TextColor"))
     }
 }
 

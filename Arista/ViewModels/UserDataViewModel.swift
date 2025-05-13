@@ -15,6 +15,10 @@ class UserDataViewModel: ObservableObject {
     @Published var size: Int = 175
     @Published var hoursSleep: Int = 8
     
+    var shouldDisable: Bool {
+        name.isEmpty || email.isEmpty || weight < 30 || weight > 230 || size < 100 || size > 250
+    }
+    
     let appState = AppState.shared
     
     var initials: String {
@@ -45,6 +49,14 @@ class UserDataViewModel: ObservableObject {
             self.hoursSleep = Int(user.hoursSleep)
         } catch {
             appState.reportError("Error fetching user: \(error.localizedDescription)")
+        }
+    }
+    
+    func saveUser() {
+        do {
+            try UserRepository().saveUser(name: name, email: email, weight: weight, size: size, hoursSleep: hoursSleep)
+        } catch {
+            appState.reportError("Error updating user: \(error.localizedDescription)")
         }
     }
 }
