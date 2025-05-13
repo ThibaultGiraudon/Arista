@@ -11,7 +11,13 @@ import CoreData
 
 class ExerciseListViewModel: ObservableObject {
     @Published var exercises: [Exercice] = []
-    @Published var exercisesPerMonth: [Date: [Exercice]] = [:]
+    @Published var exercisesPerMonth = [Date: [Exercice]]()
+    var sortedExercises: [(Date, [Exercice])] {
+        exercisesPerMonth.map { key, exercises in
+            let sortedExercises = exercises.sorted(by: {$0.date ?? .now > $1.date ?? .now})
+            return (key, sortedExercises)
+        }.sorted(by: { $0.0 > $1.0 })
+    }
     
     let appState = AppState.shared
     
@@ -62,6 +68,21 @@ class ExerciseListViewModel: ObservableObject {
             }
         } catch {
             appState.reportError("Error fetching exercises: \(error.localizedDescription)")
+        }
+    }
+    
+    func deleteExercises(_ exercisesToDelete: [Exercice], for key: Date) {
+        guard var exercises = exercisesPerMonth[key] else { return }
+
+        for exercise in exercisesToDelete {
+            viewContext.delete(exercise)
+        }
+
+        do {
+            try viewContext.save()
+            fetchExercises()
+        } catch {
+            AppState.shared.reportError("Erreur lors de la suppression : \(error.localizedDescription)")
         }
     }
 }

@@ -33,9 +33,7 @@ struct ContentView: View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 20) {
-                    // TODO save user when edited
                     UserHeaderView(viewModel: userVM)
-                    // TODO let user delete exercise
                     ExerciseSummaryCard(viewModel: exerciseVM)
                     CaloriesCard(calories: exerciseVM.calOfDay)
                     // TODO let user delete sleep session

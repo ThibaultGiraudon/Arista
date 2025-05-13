@@ -14,14 +14,18 @@ struct ExerciseListView: View {
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
-                List(viewModel.exercisesPerMonth.sorted(by: { $0.key > $1.key }), id: \.key) { month, exercices in
+                List(viewModel.sortedExercises, id: \.0) { month, exercices in
                     Section("\(month.formatted("MMMM YYYY"))") {
-                        ForEach(exercices.sorted(by: {$0.date ?? .now > $1.date ?? .now}), id: \.self) { exercise in
+                        ForEach(exercices, id: \.self) { exercise in
                             NavigationLink {
                                 ExerciseDetailView(exercise: exercise)
                             } label: {
                                 ExerciseRowView(exercise: exercise)
                             }
+                        }
+                        .onDelete { indexes in
+                            let exerciseToDelete = indexes.map { exercices[$0] }
+                            viewModel.deleteExercises(exerciseToDelete, for: month)
                         }
                     }
                     .listRowBackground(Color("OffWhite"))
