@@ -22,13 +22,17 @@ struct TrendsSection: View {
             .foregroundStyle(.green)
 
             LazyVGrid(columns: Array(repeating: .init(), count: 2), alignment: .leading) {
-                TrendCard(title: "M'entraîner", value: "\(exerciseVM.averageDuration)", unit: "MIN/JOUR", color: .green)
-                TrendCard(title: "Dormir", value: "\(sleepVM.averageSleep)", unit: "H/JOUR", color: .blue)
-                TrendCard(title: "Se coucher", value: "\(sleepVM.averageStartHour / 60)h\(sleepVM.averageStartHour % 60)", unit: nil, color: .indigo)
-                TrendCard(title: "Se lever", value: "\(sleepVM.averageEndHour / 60)h\(sleepVM.averageEndHour % 60)", unit: nil, color: .purple)
+                TrendCard(title: "M'entraîner", value: "\(exerciseVM.averageDuration())", unit: "MIN/JOUR", color: .green, icon: exerciseVM.durationTrend())
+                TrendCard(title: "Dormir", value: "\(sleepVM.averageSleep() / 60)", unit: "H/JOUR", color: .blue, icon: sleepVM.sleepTrend())
+                TrendCard(title: "Se coucher", value: "\(sleepVM.averageStartHour() / 60 % 24)h\(sleepVM.averageStartHour() % 60)", unit: nil, color: .indigo, icon: sleepVM.hourStartTrend())
+                TrendCard(title: "Se lever", value: "\(sleepVM.averageEndHour() / 60)h\(sleepVM.averageEndHour() % 60)", unit: nil, color: .purple, icon: sleepVM.hourEndTrend())
             }
         }
         .cardBackground()
+        .onAppear {
+            print(Date.distantPast.formatted("d MMMM YYYY"))
+            print(Date.now.formatted("d MMMM YYYY"))
+        }
     }
 }
 

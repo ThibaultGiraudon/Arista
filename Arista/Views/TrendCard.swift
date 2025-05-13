@@ -12,10 +12,11 @@ struct TrendCard: View {
     let value: String
     let unit: String?
     let color: Color
+    let icon: String
 
     var body: some View {
         HStack(spacing: 0) {
-            Image(systemName: "minus")
+            Image(systemName: icon)
                 .padding(15)
                 .font(.title.bold())
                 .foregroundStyle(color)
@@ -37,5 +38,5 @@ struct TrendCard: View {
 }
 
 #Preview {
-    TrendCard(title: "M'entrainer", value: "29", unit: "MIN/JOUR", color: .green)
+    TrendCard(title: "M'entrainer", value: "29", unit: "MIN/JOUR", color: .green, icon: "minus")
 }

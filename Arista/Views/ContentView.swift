@@ -29,14 +29,11 @@ struct ContentView: View {
             ScrollView {
                 // TODO allow user to reorganize ?
                 VStack(spacing: 20) {
-                    // TODO moves in overlay ?
                     UserHeaderView(viewModel: userVM)
-                    // TODO invert order
                     ExerciseSummaryCard(viewModel: exerciseVM)
                     CaloriesCard(calories: exerciseVM.calOfDay)
-                    // TODO invert order
                     SleepSummaryCard(viewModel: sleepVM)
-                    // TODO calcul trend on last 7 week and compare with other data ?
+                    // TODO calcul trend on last 7 day and compare with other data ?
                     TrendsSection(exerciseVM: exerciseVM, sleepVM: sleepVM)
                 }
                 .padding(.horizontal)
