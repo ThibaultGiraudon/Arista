@@ -41,7 +41,9 @@ struct ExerciseListView: View {
             })
         }
         .sheet(isPresented: $showingAddExerciseView, onDismiss: viewModel.fetchExercises) {
-            AddExerciseView(viewModel: AddExerciseViewModel(context: viewModel.viewContext))
+            NavigationStack {
+                AddExerciseView(viewModel: AddExerciseViewModel(context: viewModel.viewContext))
+            }
         }
         
     }
