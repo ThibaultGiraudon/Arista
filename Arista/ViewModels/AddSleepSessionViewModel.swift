@@ -15,6 +15,9 @@ class AddSleepSessionViewModel: ObservableObject {
             updateDuration()
         }
     }
+    
+    let appState = AppState.shared
+    
     var duration = 0
     
     var repository = SleepRepository()
@@ -23,7 +26,7 @@ class AddSleepSessionViewModel: ObservableObject {
         do {
             try repository.addSleep(duration: duration, quality: quality, startDate: startDate)
         } catch {
-            print(error.localizedDescription)
+            appState.reportError("Error fetching adding sleep session: \(error.localizedDescription)")
         }
     }
     

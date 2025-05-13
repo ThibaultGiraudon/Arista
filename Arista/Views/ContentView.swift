@@ -19,26 +19,35 @@ extension View {
     }
 }
 
+// TODO add comment in all project
+// TODO create extension for ViewModels
+// TODO moves extension in dedicated files
+// TODO add unit test
 struct ContentView: View {
     @StateObject private var sleepVM = SleepHistoryViewModel()
     @StateObject private var exerciseVM = ExerciseListViewModel()
     @StateObject private var userVM = UserDataViewModel()
+    @StateObject private var appState = AppState.shared
 
     var body: some View {
         NavigationStack {
             ScrollView {
-                // TODO allow user to reorganize ?
                 VStack(spacing: 20) {
+                    // TODO save user when edited
                     UserHeaderView(viewModel: userVM)
+                    // TODO let user delete exercise
                     ExerciseSummaryCard(viewModel: exerciseVM)
                     CaloriesCard(calories: exerciseVM.calOfDay)
+                    // TODO let user delete sleep session
                     SleepSummaryCard(viewModel: sleepVM)
-                    // TODO calcul trend on last 7 day and compare with other data ?
                     TrendsSection(exerciseVM: exerciseVM, sleepVM: sleepVM)
                 }
                 .padding(.horizontal)
             }
             .background(Color("DimGray").ignoresSafeArea())
+            .alert(appState.alertTitle, isPresented: $appState.showError) {
+                Button("OK") { }
+            }
         }
     }
 }

@@ -76,9 +76,6 @@ struct SleepHistoryView: View {
                     AddSleepSessionView()
                 }
             }
-            .onAppear {
-                print(viewModel.mappedSessions.count)
-            }
         }
     }
     

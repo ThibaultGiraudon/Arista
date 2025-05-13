@@ -21,6 +21,8 @@ class SleepHistoryViewModel: ObservableObject {
     @Published var mappedSessions = [Date: [Sleep]]()
     @Published var date = Date.now
     
+    let appState = AppState.shared
+    
     static let shared = SleepHistoryViewModel()
 
     private var calendar: Calendar
@@ -78,9 +80,7 @@ class SleepHistoryViewModel: ObservableObject {
         }
         
         guard count > 0 else { return 0 }
-        
-        print(count)
-        
+                
         return total / count
     }
     
@@ -106,8 +106,6 @@ class SleepHistoryViewModel: ObservableObject {
         
         guard count > 0 else { return 0 }
         
-        
-        print(count)
         return total / count
     }
     
@@ -126,8 +124,6 @@ class SleepHistoryViewModel: ObservableObject {
         }
         
         guard count > 0 else { return 0 }
-        
-        print(count)
         
         return total / count
     }
@@ -207,12 +203,11 @@ class SleepHistoryViewModel: ObservableObject {
     // MARK: - Helper
     
     /// Loads all sleep sessions from the repository and updates the local state.
-    /// - Note: Errors are currently printed to the console. TODO: Display a user-facing error message.
     func fetchSleepSessions() {
         do {
             sleepSessions = try SleepRepository().getSleepSessions()
         } catch {
-            print("Failed to load sleep data: \(error.localizedDescription)")
+            appState.reportError("Error fetching sleep sessions: \(error.localizedDescription)")
         }
     }
     

@@ -12,6 +12,9 @@ import CoreData
 class ExerciseListViewModel: ObservableObject {
     @Published var exercises: [Exercice] = []
     @Published var exercisesPerMonth: [Date: [Exercice]] = [:]
+    
+    let appState = AppState.shared
+    
     var calOfDay: Int {
         var total = 0
         for exercise in exercises {
@@ -58,7 +61,7 @@ class ExerciseListViewModel: ObservableObject {
                 return .now
             }
         } catch {
-            print(error.localizedDescription)
+            appState.reportError("Error fetching exercises: \(error.localizedDescription)")
         }
     }
 }

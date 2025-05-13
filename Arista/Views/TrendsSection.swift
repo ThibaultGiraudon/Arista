@@ -29,10 +29,6 @@ struct TrendsSection: View {
             }
         }
         .cardBackground()
-        .onAppear {
-            print(Date.distantPast.formatted("d MMMM YYYY"))
-            print(Date.now.formatted("d MMMM YYYY"))
-        }
     }
 }
 

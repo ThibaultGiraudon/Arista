@@ -15,6 +15,8 @@ class UserDataViewModel: ObservableObject {
     @Published var size: Int = 175
     @Published var hoursSleep: Int = 8
     
+    let appState = AppState.shared
+    
     var initials: String {
         let names = self.name.split(separator: " ")
         var initials = ""
@@ -42,7 +44,7 @@ class UserDataViewModel: ObservableObject {
             self.size = Int(user.size)
             self.hoursSleep = Int(user.hoursSleep)
         } catch {
-            print(error.localizedDescription)
+            appState.reportError("Error fetching user: \(error.localizedDescription)")
         }
     }
 }
