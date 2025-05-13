@@ -16,7 +16,7 @@ struct ExerciseListView: View {
             VStack(alignment: .leading) {
                 List(viewModel.exercisesPerMonth.sorted(by: { $0.key > $1.key }), id: \.key) { month, exercices in
                     Section("\(month.formatted("MMMM YYYY"))") {
-                        ForEach(exercices, id: \.self) { exercise in
+                        ForEach(exercices.sorted(by: {$0.date ?? .now > $1.date ?? .now}), id: \.self) { exercise in
                             NavigationLink {
                                 ExerciseDetailView(exercise: exercise)
                             } label: {
