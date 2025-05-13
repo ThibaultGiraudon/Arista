@@ -22,7 +22,7 @@ struct SleepSessionListView: View {
         Form {
             ForEach(sleepSessions.sorted(by: { $0.key > $1.key }), id: \.key) { (key, sleeps) in
                 Section(getHeader(for: key)) {
-                    ForEach(sleeps, id: \.self) { sleep in
+                    ForEach(sleeps.sorted(by: { $0.endDate > $1.endDate }), id: \.self) { sleep in
                         HStack(spacing: 20) {
                             SleepIndicatorView(duration: Int(sleep.duration / 60), hoursSleep: Int(sleep.user?.hoursSleep ?? 8))
                             VStack(alignment: .leading) {
