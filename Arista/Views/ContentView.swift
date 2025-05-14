@@ -36,7 +36,6 @@ struct ContentView: View {
                     UserHeaderView(viewModel: userVM)
                     ExerciseSummaryCard(viewModel: exerciseVM)
                     CaloriesCard(calories: exerciseVM.calOfDay)
-                    // TODO let user delete sleep session
                     SleepSummaryCard(viewModel: sleepVM)
                     TrendsSection(exerciseVM: exerciseVM, sleepVM: sleepVM)
                 }

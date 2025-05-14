@@ -72,8 +72,6 @@ class ExerciseListViewModel: ObservableObject {
     }
     
     func deleteExercises(_ exercisesToDelete: [Exercice], for key: Date) {
-        guard var exercises = exercisesPerMonth[key] else { return }
-
         for exercise in exercisesToDelete {
             viewContext.delete(exercise)
         }

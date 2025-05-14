@@ -17,12 +17,12 @@ extension Date {
 }
 
 struct SleepSessionListView: View {
-    var sleepSessions: [Date: [Sleep]]
+    @ObservedObject var viewModel: SleepHistoryViewModel
     var body: some View {
-        Form {
-            ForEach(sleepSessions.sorted(by: { $0.key > $1.key }), id: \.key) { (key, sleeps) in
+        List {
+            ForEach(viewModel.sortedSleepSessions, id: \.0) { key, sleeps in
                 Section(getHeader(for: key)) {
-                    ForEach(sleeps.sorted(by: { $0.endDate > $1.endDate }), id: \.self) { sleep in
+                    ForEach(sleeps, id: \.self) { sleep in
                         HStack(spacing: 20) {
                             SleepIndicatorView(duration: Int(sleep.duration / 60), hoursSleep: Int(sleep.user?.hoursSleep ?? 8))
                             VStack(alignment: .leading) {
@@ -33,6 +33,10 @@ struct SleepSessionListView: View {
                             Text("\(sleep.quality)/10")
                                 .font(.title3)
                         }
+                    }
+                    .onDelete { indexes in
+                        let sleepToDelete = indexes.map { sleeps[$0] }
+                        viewModel.deleteSleepSessions(sleepToDelete, for: key)
                     }
                 }
             }
@@ -62,5 +66,5 @@ struct SleepSessionListView: View {
 }
 
 #Preview {
-    SleepSessionListView(sleepSessions: SleepHistoryViewModel.shared.mappedSessions)
+    SleepSessionListView(viewModel: SleepHistoryViewModel())
 }

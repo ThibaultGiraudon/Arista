@@ -19,6 +19,14 @@ struct ChartSleepData: Identifiable, Hashable {
 class SleepHistoryViewModel: ObservableObject {
     @Published var sleepSessions = [Sleep]()
     @Published var mappedSessions = [Date: [Sleep]]()
+    var sortedSleepSessions: [(Date, [Sleep])] {
+        mappedSessions.map { key, sleeps in
+            let sortedSleeps = sleeps.sorted(by: {
+                $0.endDate > $1.endDate
+            })
+            return (key, sortedSleeps)
+        }.sorted(by: { $0.0 > $1.0 })
+    }
     @Published var date = Date.now
     
     let appState = AppState.shared
@@ -148,7 +156,6 @@ class SleepHistoryViewModel: ObservableObject {
         self.timeZone = TimeZone(secondsFromGMT: 3600)! // France
         calendar.timeZone = timeZone
         fetchSleepSessions()
-        mapSleepSessions()
     }
 
     // MARK: - Public API
@@ -181,6 +188,19 @@ class SleepHistoryViewModel: ObservableObject {
             return start >= lowerBound && start < upperBound
         }
     }
+    
+    func deleteSleepSessions(_ sleepsToDelete: [Sleep], for key: Date) {
+        for sleep in sleepsToDelete {
+            viewContext.delete(sleep)
+        }
+        
+        do {
+            try viewContext.save()
+            fetchSleepSessions()
+        } catch {
+            appState.reportError("Error deleting sleep session: \(error.localizedDescription)")
+        }
+    }
 
     // MARK: - Gesture
 
@@ -206,6 +226,7 @@ class SleepHistoryViewModel: ObservableObject {
     func fetchSleepSessions() {
         do {
             sleepSessions = try SleepRepository().getSleepSessions()
+            mapSleepSessions()
         } catch {
             appState.reportError("Error fetching sleep sessions: \(error.localizedDescription)")
         }

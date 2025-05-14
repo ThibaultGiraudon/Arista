@@ -48,7 +48,7 @@ struct SleepHistoryView: View {
                 .frame(height: 400)
                 Form {
                     NavigationLink {
-                        SleepSessionListView(sleepSessions: viewModel.mappedSessions)
+                        SleepSessionListView(viewModel: viewModel)
                     } label: {
                         Text("Afficher toutes les données")
                     }
