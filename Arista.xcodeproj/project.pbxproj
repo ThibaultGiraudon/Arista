@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 70;
+	objectVersion = 73;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,10 +16,6 @@
 		53E587532B235E9000E4EF99 /* AristaUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E587522B235E9000E4EF99 /* AristaUITestsLaunchTests.swift */; };
 		53E587632B235FF600E4EF99 /* UserDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E587622B235FF600E4EF99 /* UserDataView.swift */; };
 		53E587692B23616A00E4EF99 /* UserDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E587682B23616A00E4EF99 /* UserDataViewModel.swift */; };
-		53E5876B2B23648500E4EF99 /* ExerciseListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E5876A2B23648500E4EF99 /* ExerciseListViewModel.swift */; };
-		53E5876F2B236DBC00E4EF99 /* AddExerciseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E5876E2B236DBC00E4EF99 /* AddExerciseViewModel.swift */; };
-		53E587712B23714800E4EF99 /* SleepHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E587702B23714800E4EF99 /* SleepHistoryViewModel.swift */; };
-		CE663E492DC91CF400793F91 /* AddSleepSessionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE663E482DC91CF400793F91 /* AddSleepSessionViewModel.swift */; };
 		CE96E1732DD103290091BE11 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE96E1722DD103290091BE11 /* ContentView.swift */; };
 		CE96E1772DD1FB4D0091BE11 /* HeaderRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE96E1762DD1FB4D0091BE11 /* HeaderRow.swift */; };
 		CE96E1792DD1FB5F0091BE11 /* TrendCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE96E1782DD1FB5F0091BE11 /* TrendCard.swift */; };
@@ -61,10 +57,6 @@
 		53E587522B235E9000E4EF99 /* AristaUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AristaUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		53E587622B235FF600E4EF99 /* UserDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataView.swift; sourceTree = "<group>"; };
 		53E587682B23616A00E4EF99 /* UserDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataViewModel.swift; sourceTree = "<group>"; };
-		53E5876A2B23648500E4EF99 /* ExerciseListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseListViewModel.swift; sourceTree = "<group>"; };
-		53E5876E2B236DBC00E4EF99 /* AddExerciseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExerciseViewModel.swift; sourceTree = "<group>"; };
-		53E587702B23714800E4EF99 /* SleepHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepHistoryViewModel.swift; sourceTree = "<group>"; };
-		CE663E482DC91CF400793F91 /* AddSleepSessionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSleepSessionViewModel.swift; sourceTree = "<group>"; };
 		CE96E1722DD103290091BE11 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		CE96E1762DD1FB4D0091BE11 /* HeaderRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderRow.swift; sourceTree = "<group>"; };
 		CE96E1782DD1FB5F0091BE11 /* TrendCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendCard.swift; sourceTree = "<group>"; };
@@ -76,12 +68,34 @@
 		CE96E18A2DD22C980091BE11 /* IntensityRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntensityRowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		CEE112A42DD5DDB900353204 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"+Trend.swift",
+			);
+			target = 53E5872C2B235E8F00E4EF99 /* Arista */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+		CEE112A52DD5DDB900353204 /* PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
+			buildPhase = 53E5872B2B235E8F00E4EF99 /* Resources */;
+			membershipExceptions = (
+				"+Trend.swift",
+			);
+		};
+/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		CE0BB2262DD5DC4B0059E2F8 /* Sleep */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Sleep; sourceTree = "<group>"; };
 		CE5B64B42DD102D60091DA59 /* Exercice */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Exercice; sourceTree = "<group>"; };
 		CE5B64B52DD102E50091DA59 /* Sleep */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Sleep; sourceTree = "<group>"; };
 		CE663E1D2DC78D3600793F91 /* Models */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Models; sourceTree = "<group>"; };
 		CE663E262DC78D4000793F91 /* Repositories */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Repositories; sourceTree = "<group>"; };
 		CE663E292DC78DA300793F91 /* Utiles */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Utiles; sourceTree = "<group>"; };
+		CEE112A12DD5DD9600353204 /* Exercise */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (CEE112A42DD5DDB900353204 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, CEE112A52DD5DDB900353204 /* PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Exercise; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,11 +206,9 @@
 		53E587612B235FDC00E4EF99 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				CE0BB2262DD5DC4B0059E2F8 /* Sleep */,
 				53E587682B23616A00E4EF99 /* UserDataViewModel.swift */,
-				53E5876A2B23648500E4EF99 /* ExerciseListViewModel.swift */,
-				53E5876E2B236DBC00E4EF99 /* AddExerciseViewModel.swift */,
-				53E587702B23714800E4EF99 /* SleepHistoryViewModel.swift */,
-				CE663E482DC91CF400793F91 /* AddSleepSessionViewModel.swift */,
+				CEE112A12DD5DD9600353204 /* Exercise */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -217,11 +229,13 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				CE0BB2262DD5DC4B0059E2F8 /* Sleep */,
 				CE5B64B42DD102D60091DA59 /* Exercice */,
 				CE5B64B52DD102E50091DA59 /* Sleep */,
 				CE663E1D2DC78D3600793F91 /* Models */,
 				CE663E262DC78D4000793F91 /* Repositories */,
 				CE663E292DC78DA300793F91 /* Utiles */,
+				CEE112A12DD5DD9600353204 /* Exercise */,
 			);
 			name = Arista;
 			productName = Arista;
@@ -288,7 +302,6 @@
 				};
 			};
 			buildConfigurationList = 53E587282B235E8F00E4EF99 /* Build configuration list for PBXProject "Arista" */;
-			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -296,6 +309,7 @@
 				Base,
 			);
 			mainGroup = 53E587242B235E8F00E4EF99;
+			preferredProjectObjectVersion = 56;
 			productRefGroup = 53E5872E2B235E8F00E4EF99 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -338,17 +352,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE663E492DC91CF400793F91 /* AddSleepSessionViewModel.swift in Sources */,
 				CE96E1812DD1FB910091BE11 /* ExerciseSummaryCard.swift in Sources */,
 				CE96E1772DD1FB4D0091BE11 /* HeaderRow.swift in Sources */,
-				53E587712B23714800E4EF99 /* SleepHistoryViewModel.swift in Sources */,
 				CE96E18B2DD22C980091BE11 /* IntensityRowView.swift in Sources */,
 				53E587632B235FF600E4EF99 /* UserDataView.swift in Sources */,
 				53E587312B235E8F00E4EF99 /* AristaApp.swift in Sources */,
 				CE96E17B2DD1FB6B0091BE11 /* TrendsSection.swift in Sources */,
-				53E5876B2B23648500E4EF99 /* ExerciseListViewModel.swift in Sources */,
 				53E5873D2B235E9000E4EF99 /* Arista.xcdatamodeld in Sources */,
-				53E5876F2B236DBC00E4EF99 /* AddExerciseViewModel.swift in Sources */,
 				CE96E17F2DD1FB850091BE11 /* CaloriesCard.swift in Sources */,
 				CE96E1732DD103290091BE11 /* ContentView.swift in Sources */,
 				CE96E1792DD1FB5F0091BE11 /* TrendCard.swift in Sources */,

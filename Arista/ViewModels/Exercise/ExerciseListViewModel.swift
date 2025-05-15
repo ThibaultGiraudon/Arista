@@ -10,8 +10,11 @@ import Foundation
 import CoreData
 
 class ExerciseListViewModel: ObservableObject {
+    /// All exercises from CoreData.
     @Published var exercises: [Exercice] = []
+    /// All exercises grouped by months.
     @Published var exercisesPerMonth = [Date: [Exercice]]()
+    /// All exercises grouped by months and sorted ascending.
     var sortedExercises: [(Date, [Exercice])] {
         exercisesPerMonth.map { key, exercises in
             let sortedExercises = exercises.sorted(by: {$0.date ?? .now > $1.date ?? .now})
@@ -19,35 +22,8 @@ class ExerciseListViewModel: ObservableObject {
         }.sorted(by: { $0.0 > $1.0 })
     }
     
+    /// Shared struct catching error thrown.
     let appState = AppState.shared
-    
-    var calOfDay: Int {
-        var total = 0
-        for exercise in exercises {
-            guard let date = exercise.date else { continue }
-            if date.formatted("d MMMM") == Date.now.formatted("d MMMM") {
-                total += exercise.calories
-            }
-        }
-        return total
-    }
-    
-    func averageDuration(from: Date = .distantPast, to: Date = .now) -> Int {
-        var total = 0
-        var count = 0
-        
-        for exercise in exercises {
-            guard let date = exercise.date else { continue }
-            guard date >= from && date <= to else { continue }
-            
-            total += Int(exercise.duration)
-            count += 1
-        }
-        
-        guard count > 0 else { return 0 }
-        
-        return total / exercises.count
-    }
 
     var viewContext: NSManagedObjectContext
 
@@ -56,6 +32,8 @@ class ExerciseListViewModel: ObservableObject {
         fetchExercises()
     }
 
+    /// Loads all exercises from the repository and updates the local state.
+    /// Groupeds exercises by months and updates the local state.
     func fetchExercises() {
         do {
             exercises = try ExerciceRepository().getExercices()
@@ -71,6 +49,8 @@ class ExerciseListViewModel: ObservableObject {
         }
     }
     
+    /// Deletes all given exercises and fetches back all exercises remaining.
+    /// - Parameter exercisesToDelete: An array of `Exercise` that should be deleted.
     func deleteExercises(_ exercisesToDelete: [Exercice], for key: Date) {
         for exercise in exercisesToDelete {
             viewContext.delete(exercise)
@@ -83,30 +63,4 @@ class ExerciseListViewModel: ObservableObject {
             AppState.shared.reportError("Erreur lors de la suppression : \(error.localizedDescription)")
         }
     }
-}
-
-extension ExerciseListViewModel {
-    func durationTrend() -> String {
-        let now = Date.now
-        let lastWeek = Calendar.current.date(byAdding: .day, value: -7, to: now)!
-        
-        let recent = averageDuration(from: lastWeek, to: now)
-        let older = averageDuration(from: .distantPast, to: lastWeek)
-        
-        return compareTrend(recent: recent, older: older)
-    }
-    
-    private func compareTrend(recent: Int, older: Int) -> String {
-        let diff = recent - older
-        let threshold = 5
-
-        if diff > threshold {
-            return "chevron.up"
-        } else if diff < -threshold {
-            return "chevron.down"
-        } else {
-            return "minus"
-        }
-    }
-    
 }
