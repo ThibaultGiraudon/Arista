@@ -1,5 +1,13 @@
+//
+//  +Trend.swift
+//  Arista
+//
+//  Created by Thibault Giraudon on 15/05/2025.
+//
+
+import Foundation
+
 extension ExerciseListViewModel {
-    
     /// Computes the total number of calories burned today from all exercises.
     /// - Returns: The total calories burned for the current day.
     var calOfDay: Int {

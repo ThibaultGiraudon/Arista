@@ -15,12 +15,15 @@ class UserDataViewModel: ObservableObject {
     @Published var size: Int = 175
     @Published var hoursSleep: Int = 8
     
+    /// Computes if save button should be disable
     var shouldDisable: Bool {
         name.isEmpty || email.isEmpty || weight < 30 || weight > 230 || size < 100 || size > 250
     }
     
+    /// Shared struct catching error thrown
     let appState = AppState.shared
     
+    /// Gives the initials of the registered user
     var initials: String {
         let names = self.name.split(separator: " ")
         var initials = ""
@@ -37,6 +40,7 @@ class UserDataViewModel: ObservableObject {
         fetchUserData()
     }
 
+    /// Fetches user from the repository and updates local states.
     private func fetchUserData() {
         do {
             guard let user = try UserRepository().getUser() else {
@@ -52,6 +56,7 @@ class UserDataViewModel: ObservableObject {
         }
     }
     
+    /// Saves new user's datas in the repository.
     func saveUser() {
         do {
             try UserRepository().saveUser(name: name, email: email, weight: weight, size: size, hoursSleep: hoursSleep)

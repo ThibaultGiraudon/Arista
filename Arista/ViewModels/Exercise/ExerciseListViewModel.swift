@@ -51,7 +51,7 @@ class ExerciseListViewModel: ObservableObject {
     
     /// Deletes all given exercises and fetches back all exercises remaining.
     /// - Parameter exercisesToDelete: An array of `Exercise` that should be deleted.
-    func deleteExercises(_ exercisesToDelete: [Exercice], for key: Date) {
+    func deleteExercises(_ exercisesToDelete: [Exercice]) {
         for exercise in exercisesToDelete {
             viewContext.delete(exercise)
         }

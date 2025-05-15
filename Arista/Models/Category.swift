@@ -29,6 +29,7 @@ enum Category: String, CaseIterable, Identifiable {
 
     var id: String { rawValue }
     
+    /// Computes a `SFSymbol` string.
     var icon: String {
         switch self {
             case .running: return "figure.run"
@@ -52,6 +53,7 @@ enum Category: String, CaseIterable, Identifiable {
         }
     }
     
+    /// Computes the met factor used to calculate the calories burned
     var met: Double {
         switch self {
             case .running: return 9.8

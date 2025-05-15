@@ -25,7 +25,7 @@ struct ExerciseListView: View {
                         }
                         .onDelete { indexes in
                             let exerciseToDelete = indexes.map { exercices[$0] }
-                            viewModel.deleteExercises(exerciseToDelete, for: month)
+                            viewModel.deleteExercises(exerciseToDelete)
                         }
                     }
                     .listRowBackground(Color("OffWhite"))

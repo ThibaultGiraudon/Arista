@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 73;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -68,26 +68,6 @@
 		CE96E18A2DD22C980091BE11 /* IntensityRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntensityRowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		CEE112A42DD5DDB900353204 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				"+Trend.swift",
-			);
-			target = 53E5872C2B235E8F00E4EF99 /* Arista */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
-/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
-		CEE112A52DD5DDB900353204 /* PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet */ = {
-			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
-			buildPhase = 53E5872B2B235E8F00E4EF99 /* Resources */;
-			membershipExceptions = (
-				"+Trend.swift",
-			);
-		};
-/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		CE0BB2262DD5DC4B0059E2F8 /* Sleep */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Sleep; sourceTree = "<group>"; };
 		CE5B64B42DD102D60091DA59 /* Exercice */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Exercice; sourceTree = "<group>"; };
@@ -95,7 +75,7 @@
 		CE663E1D2DC78D3600793F91 /* Models */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Models; sourceTree = "<group>"; };
 		CE663E262DC78D4000793F91 /* Repositories */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Repositories; sourceTree = "<group>"; };
 		CE663E292DC78DA300793F91 /* Utiles */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Utiles; sourceTree = "<group>"; };
-		CEE112A12DD5DD9600353204 /* Exercise */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (CEE112A42DD5DDB900353204 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, CEE112A52DD5DDB900353204 /* PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Exercise; sourceTree = "<group>"; };
+		CEE112A12DD5DD9600353204 /* Exercise */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Exercise; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -302,6 +282,7 @@
 				};
 			};
 			buildConfigurationList = 53E587282B235E8F00E4EF99 /* Build configuration list for PBXProject "Arista" */;
+			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -309,7 +290,6 @@
 				Base,
 			);
 			mainGroup = 53E587242B235E8F00E4EF99;
-			preferredProjectObjectVersion = 56;
 			productRefGroup = 53E5872E2B235E8F00E4EF99 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";

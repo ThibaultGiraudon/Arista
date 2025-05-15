@@ -16,8 +16,10 @@ class AddExerciseViewModel: ObservableObject {
     @Published var intensity: Int = 5
     @Published var currentIntensity: Int = 5
     
+    /// Shared struct catching error thrown
     let appState = AppState.shared
     
+    /// Gradient used as background
     let colorGradients: [[Color]] = [
         .interpolateColors(from: (60, 113, 85), to: (20, 35, 34), steps: 10),
         .interpolateColors(from: (54, 116, 108), to: (21, 33, 38), steps: 10),
@@ -30,6 +32,14 @@ class AddExerciseViewModel: ObservableObject {
         .interpolateColors(from: (132, 70, 126), to: (57, 16, 40), steps: 10),
         .interpolateColors(from: (130, 60, 102), to: (57, 17, 29), steps: 10)
     ]
+    
+    /// Calculates the effort depending on the given value.
+    /// - Parameter value: An `Int` representing the intensity of the exercise
+    /// - Returns: A `String` representing the effort:
+    ///   - `"Facile"`: if the intensity is between 1 and 3
+    ///   - `"Modéré"`: if the intensity is between 4 and 6
+    ///   - `"Difficile"`: if the intensity is between 7 and 8
+    ///   - `"Maximum"`: otherwise
     func effort(for value: Int) -> String {
         switch value {
             case 1...3:
@@ -49,6 +59,7 @@ class AddExerciseViewModel: ObservableObject {
         self.viewContext = context
     }
 
+    /// Add new exercise in the repository.
     func addExercise() {
         do {
             try ExerciceRepository().addExercice(category: category.rawValue, date: date, intensity: intensity, duration: duration)
@@ -56,30 +67,4 @@ class AddExerciseViewModel: ObservableObject {
             appState.reportError("Error adding exercise: \(error.localizedDescription)")
         }
     }
-    
-    var currentColor: Color {
-        switch intensity {
-            case 1:
-                return Color(60, 113, 85)
-            case 2:
-                return Color(54, 116, 108)
-            case 3:
-                return Color(47, 100, 120)
-            case 4:
-                return Color(66, 98, 137)
-            case 5:
-                return Color(51, 62, 87)
-            case 6:
-                return Color(75, 63, 137)
-            case 7:
-                return Color(100, 70, 137)
-            case 8:
-                return Color(108, 62, 138)
-            case 9:
-                return Color(132, 70, 126)
-            default:
-                return Color(130, 60, 102)
-        }
-    }
-    
 }

@@ -7,18 +7,6 @@
 
 import SwiftUI
 
-extension View {
-    func cardBackground(_ length: CGFloat = 20) -> some View {
-        self
-            .padding(length)
-            .background {
-                RoundedRectangle(cornerRadius: 15)
-                    .fill(Color("OffWhite"))
-            }
-            .foregroundStyle(Color("TextColor"))
-    }
-}
-
 // TODO add comment in all project
 // TODO create extension for ViewModels
 // TODO moves extension in dedicated files

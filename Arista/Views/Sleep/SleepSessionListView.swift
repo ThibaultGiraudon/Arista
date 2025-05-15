@@ -7,15 +7,6 @@
 
 import SwiftUI
 
-extension Date {
-    func formatted(_ formatStyle: String) -> String {
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "fr")
-        formatter.dateFormat = formatStyle
-        return formatter.string(from: self)
-    }
-}
-
 struct SleepSessionListView: View {
     @ObservedObject var viewModel: SleepHistoryViewModel
     var body: some View {
@@ -36,7 +27,7 @@ struct SleepSessionListView: View {
                     }
                     .onDelete { indexes in
                         let sleepToDelete = indexes.map { sleeps[$0] }
-                        viewModel.deleteSleepSessions(sleepToDelete, for: key)
+                        viewModel.deleteSleepSessions(sleepToDelete)
                     }
                 }
             }
