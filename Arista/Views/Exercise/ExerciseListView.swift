@@ -14,9 +14,9 @@ struct ExerciseListView: View {
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
-                List(viewModel.sortedExercises, id: \.0) { month, exercices in
+                List(viewModel.sortedExercises, id: \.0) { month, exercises in
                     Section("\(month.formatted("MMMM YYYY"))") {
-                        ForEach(exercices, id: \.self) { exercise in
+                        ForEach(exercises, id: \.self) { exercise in
                             NavigationLink {
                                 ExerciseDetailView(exercise: exercise)
                             } label: {
@@ -24,7 +24,7 @@ struct ExerciseListView: View {
                             }
                         }
                         .onDelete { indexes in
-                            let exerciseToDelete = indexes.map { exercices[$0] }
+                            let exerciseToDelete = indexes.map { exercises[$0] }
                             viewModel.deleteExercises(exerciseToDelete)
                         }
                     }

@@ -62,7 +62,7 @@ class AddExerciseViewModel: ObservableObject {
     /// Add new exercise in the repository.
     func addExercise() {
         do {
-            try ExerciceRepository().addExercice(category: category.rawValue, date: date, intensity: intensity, duration: duration)
+            try ExerciseRepository().addExercise(category: category.rawValue, date: date, intensity: intensity, duration: duration)
         } catch {
             appState.reportError("Error adding exercise: \(error.localizedDescription)")
         }

@@ -70,7 +70,7 @@
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		CE0BB2262DD5DC4B0059E2F8 /* Sleep */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Sleep; sourceTree = "<group>"; };
-		CE5B64B42DD102D60091DA59 /* Exercice */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Exercice; sourceTree = "<group>"; };
+		CE5B64B42DD102D60091DA59 /* Exercise */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Exercise; sourceTree = "<group>"; };
 		CE5B64B52DD102E50091DA59 /* Sleep */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Sleep; sourceTree = "<group>"; };
 		CE663E1D2DC78D3600793F91 /* Models */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Models; sourceTree = "<group>"; };
 		CE663E262DC78D4000793F91 /* Repositories */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Repositories; sourceTree = "<group>"; };
@@ -175,7 +175,7 @@
 				CE96E1782DD1FB5F0091BE11 /* TrendCard.swift */,
 				CE96E1762DD1FB4D0091BE11 /* HeaderRow.swift */,
 				53E587622B235FF600E4EF99 /* UserDataView.swift */,
-				CE5B64B42DD102D60091DA59 /* Exercice */,
+				CE5B64B42DD102D60091DA59 /* Exercise */,
 				CE5B64B52DD102E50091DA59 /* Sleep */,
 				CE96E1722DD103290091BE11 /* ContentView.swift */,
 				CE96E18A2DD22C980091BE11 /* IntensityRowView.swift */,
@@ -210,7 +210,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				CE0BB2262DD5DC4B0059E2F8 /* Sleep */,
-				CE5B64B42DD102D60091DA59 /* Exercice */,
+				CE5B64B42DD102D60091DA59 /* Exercise */,
 				CE5B64B52DD102E50091DA59 /* Sleep */,
 				CE663E1D2DC78D3600793F91 /* Models */,
 				CE663E262DC78D4000793F91 /* Repositories */,

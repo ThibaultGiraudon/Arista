@@ -20,7 +20,7 @@ struct DefaultData {
         
         let sleepRepository = SleepRepository(viewContext: viewContext)
         
-        let exerciseReporsitory = ExerciceRepository(viewContext: viewContext)
+        let exerciseReporsitory = ExerciseRepository(viewContext: viewContext)
         
         let calendar = Calendar.current
         let year = 2025
@@ -76,7 +76,7 @@ struct DefaultData {
                 }
             }
             
-            if try exerciseReporsitory.getExercices().isEmpty {
+            if try exerciseReporsitory.getExercises().isEmpty {
                 let exerciseData: [(day: Int, month: Int, category: String, intensity: Int16, duration: Int64)] = [
                     (30, 04, "Boxe", 10, 60),
                     (10, 05, "Badminton", 3, 63),
@@ -85,7 +85,7 @@ struct DefaultData {
                 ]
                 
                 for data in exerciseData {
-                    let exercise = Exercice(context: viewContext)
+                    let exercise = Exercise(context: viewContext)
                     
                     let dateComponents = DateComponents(
                         calendar: calendar,

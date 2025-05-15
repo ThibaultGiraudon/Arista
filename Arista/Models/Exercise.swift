@@ -1,5 +1,5 @@
 //
-//  Exercice.swift
+//  Exercise.swift
 //  Arista
 //
 //  Created by Thibault Giraudon on 29/04/2025.
@@ -8,7 +8,7 @@
 import Foundation
 import CoreData
 
-class Exercice: NSManagedObject {
+class Exercise: NSManagedObject {
     /// Computes the `Category` from the `String` category
     var categoryItem: Category {
         for item in Category.allCases {

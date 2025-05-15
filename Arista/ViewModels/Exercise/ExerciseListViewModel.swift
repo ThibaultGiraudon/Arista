@@ -11,11 +11,11 @@ import CoreData
 
 class ExerciseListViewModel: ObservableObject {
     /// All exercises from CoreData.
-    @Published var exercises: [Exercice] = []
+    @Published var exercises: [Exercise] = []
     /// All exercises grouped by months.
-    @Published var exercisesPerMonth = [Date: [Exercice]]()
+    @Published var exercisesPerMonth = [Date: [Exercise]]()
     /// All exercises grouped by months and sorted ascending.
-    var sortedExercises: [(Date, [Exercice])] {
+    var sortedExercises: [(Date, [Exercise])] {
         exercisesPerMonth.map { key, exercises in
             let sortedExercises = exercises.sorted(by: {$0.date ?? .now > $1.date ?? .now})
             return (key, sortedExercises)
@@ -36,7 +36,7 @@ class ExerciseListViewModel: ObservableObject {
     /// Groupeds exercises by months and updates the local state.
     func fetchExercises() {
         do {
-            exercises = try ExerciceRepository().getExercices()
+            exercises = try ExerciseRepository().getExercises()
             exercisesPerMonth = Dictionary(grouping: exercises) { exercise -> Date in
                 let components = Calendar.current.dateComponents([.year, .month], from: exercise.date ?? .now)
                 if let date = Calendar.current.date(from: components) {
@@ -51,7 +51,7 @@ class ExerciseListViewModel: ObservableObject {
     
     /// Deletes all given exercises and fetches back all exercises remaining.
     /// - Parameter exercisesToDelete: An array of `Exercise` that should be deleted.
-    func deleteExercises(_ exercisesToDelete: [Exercice]) {
+    func deleteExercises(_ exercisesToDelete: [Exercise]) {
         for exercise in exercisesToDelete {
             viewContext.delete(exercise)
         }

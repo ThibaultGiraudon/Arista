@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ExerciseRowView: View {
-    var exercise: Exercice
+    var exercise: Exercise
     var body: some View {
         HStack {
             Image(systemName: exercise.categoryItem.icon)

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ExerciseDetailView: View {
-    var exercise: Exercice
+    var exercise: Exercise
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {

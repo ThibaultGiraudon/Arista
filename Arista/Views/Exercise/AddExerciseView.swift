@@ -15,14 +15,14 @@ struct AddExerciseView: View {
     var body: some View {
         VStack {
             Form {
-                Section("Détail") {
-                    Picker("Catégorie", selection: $viewModel.category) {
+                Section("D√©tail") {
+                    Picker("Cat√©gorie", selection: $viewModel.category) {
                         ForEach(Category.allCases, id: \.self) { category in
                             Text("\(category)")
                         }
                     }
                     DatePicker("Date", selection: $viewModel.date)
-                    TextField("Durée (en minutes)", value: $viewModel.duration, format: .number)
+                    TextField("Dur√©e (en minutes)", value: $viewModel.duration, format: .number)
                 }
                 Section("Effort") {
                     Button {
