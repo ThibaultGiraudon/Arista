@@ -43,7 +43,7 @@ class UserDataViewModel: ObservableObject {
     /// Fetches user from the repository and updates local states.
     private func fetchUserData() {
         do {
-            guard let user = try UserRepository().getUser() else {
+            guard let user = try UserRepository(viewContext: viewContext).getUser() else {
                 throw URLError(.badURL)
             }
             self.email = user.email ?? ""
@@ -59,7 +59,7 @@ class UserDataViewModel: ObservableObject {
     /// Saves new user's datas in the repository.
     func saveUser() {
         do {
-            try UserRepository().saveUser(name: name, email: email, weight: weight, size: size, hoursSleep: hoursSleep)
+            try UserRepository(viewContext: viewContext).saveUser(name: name, email: email, weight: weight, size: size, hoursSleep: hoursSleep)
         } catch {
             appState.reportError("Error updating user: \(error.localizedDescription)")
         }

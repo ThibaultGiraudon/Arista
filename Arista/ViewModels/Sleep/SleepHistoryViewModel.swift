@@ -98,7 +98,7 @@ class SleepHistoryViewModel: ObservableObject {
     /// Loads all sleep sessions from the repository and updates the local state.
     func fetchSleepSessions() {
         do {
-            sleepSessions = try SleepRepository().getSleepSessions()
+            sleepSessions = try SleepRepository(viewContext: viewContext).getSleepSessions()
             mapSleepSessions()
         } catch {
             appState.reportError("Error fetching sleep sessions: \(error.localizedDescription)")

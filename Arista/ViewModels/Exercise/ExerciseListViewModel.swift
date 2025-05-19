@@ -6,7 +6,6 @@
 //
 
 import Foundation
-
 import CoreData
 
 class ExerciseListViewModel: ObservableObject {
@@ -36,7 +35,7 @@ class ExerciseListViewModel: ObservableObject {
     /// Groupeds exercises by months and updates the local state.
     func fetchExercises() {
         do {
-            exercises = try ExerciseRepository().getExercises()
+            exercises = try ExerciseRepository(viewContext: viewContext).getExercises()
             exercisesPerMonth = Dictionary(grouping: exercises) { exercise -> Date in
                 let components = Calendar.current.dateComponents([.year, .month], from: exercise.date ?? .now)
                 if let date = Calendar.current.date(from: components) {

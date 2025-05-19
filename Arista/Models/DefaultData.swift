@@ -31,26 +31,22 @@ struct DefaultData {
             let initialUser = User(context: viewContext)
             initialUser.name = "Thibault Giraudon"
             initialUser.email = "thibault.giraudon@gmail.com"
-            initialUser.password = "test123"
             initialUser.weight = 76.25
             initialUser.hoursSleep = 8
             initialUser.size = 181
             
 
             if try sleepRepository.getSleepSessions().isEmpty {
-                let sleepData: [(day: Int, month: Int, hour: Int, minute: Int, duration: Int)] = [
-                    (5, 05 ,0, 43, 480),
-                    (5, 05, 23, 57, 405),
-                    (7, 05, 0, 30, 510),
-                    (7, 05, 22, 50, 465),
-                    (8, 05, 23, 10, 420),
-                    (10, 05, 0, 5, 450),
-                    (10, 05, 23, 37, 360),
-                    (11, 05, 22, 00, 305),
-                    (13, 05, 1, 15, 420),
-//                    (5, 05, 01, 30, 180),
-//                    (12, 05, 22, 30, 480)
-                    
+                let sleepData: [(day: Int, month: Int, hour: Int, minute: Int, duration: Int, quality: Int16)] = [
+                    (5, 05 ,0, 43, 480, 5),
+                    (5, 05, 23, 57, 405, 7),
+                    (7, 05, 0, 30, 510, 2),
+                    (7, 05, 22, 50, 465, 4),
+                    (8, 05, 23, 10, 420, 10),
+                    (10, 05, 0, 5, 450, 1),
+                    (10, 05, 23, 37, 360, 8),
+                    (11, 05, 22, 00, 305, 6),
+                    (13, 05, 1, 15, 420, 3),
                 ]
                 
                 for data in sleepData {
@@ -71,7 +67,7 @@ struct DefaultData {
 
                     sleep.startDate = startDate
                     sleep.duration = Int64(data.duration)
-                    sleep.quality = Int16.random(in: 0...10)
+                    sleep.quality = data.quality
                     sleep.user = initialUser
                 }
             }
@@ -104,6 +100,7 @@ struct DefaultData {
                     exercise.category = data.category
                     exercise.duration = data.duration
                     exercise.intensity = data.intensity
+                    exercise.user = initialUser
                 }
             }
              
@@ -111,10 +108,6 @@ struct DefaultData {
         }
          
         }
-    
-    func randomElement() -> Double {
-        Double((-2...2).randomElement()!) * 3600
-    }
     
     func deleteAllData(_ context: NSManagedObjectContext) {
         let persistentStoreCoordinator = context.persistentStoreCoordinator

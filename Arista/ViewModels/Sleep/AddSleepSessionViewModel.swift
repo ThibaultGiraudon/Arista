@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreData
 
 class AddSleepSessionViewModel: ObservableObject {
     @Published var quality = 5
@@ -21,14 +22,18 @@ class AddSleepSessionViewModel: ObservableObject {
     /// Shared struct catching error thrown
     let appState = AppState.shared
     
-    var repository = SleepRepository()
+    let viewContext: NSManagedObjectContext
+    
+    init(viewContext: NSManagedObjectContext = PersistenceController.shared.container.viewContext) {
+        self.viewContext = viewContext
+    }
     
     /// Add new session in the repository.
     func addSleepSession() {
         do {
-            try repository.addSleep(duration: duration, quality: quality, startDate: startDate)
+            try SleepRepository(viewContext: viewContext).addSleep(duration: duration, quality: quality, startDate: startDate)
         } catch {
-            appState.reportError("Error fetching adding sleep session: \(error.localizedDescription)")
+            appState.reportError("Error adding sleep session: \(error.localizedDescription)")
         }
     }
     

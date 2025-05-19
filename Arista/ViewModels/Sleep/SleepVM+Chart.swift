@@ -46,38 +46,6 @@ extension SleepHistoryViewModel {
             return ChartSleepData(day: day, start: start, end: end)
         }
     }
-
-    // MARK: - Gesture
-
-    /// A gesture that allows the user to navigate between weeks.
-    /// Swiping left advances to the next week, while swiping right goes back to the previous one.
-    /// - Returns: A `Gesture` that updates the displayed week based on horizontal drag direction.
-    var gesture: some Gesture {
-        DragGesture()
-            .onEnded { value in
-                if value.translation.width < -50 {
-                    self.moveToNextWeek()
-                } else if value.translation.width > 50 {
-                    self.moveToPreviousWeek()
-                }
-            }
-    }
-    
-    /// Advances the current date by one week, unless it would result in a future date.
-    /// This prevents navigating beyond the current week.
-    private func moveToNextWeek() {
-        guard let newDate = calendar.date(byAdding: .day, value: 7, to: date) else { return }
-        let today = calendar.startOfDay(for: Date())
-        if calendar.startOfDay(for: newDate) <= today {
-            date = newDate
-        }
-    }
-
-    /// Moves the date back by one week.
-    private func moveToPreviousWeek() {
-        guard let newDate = calendar.date(byAdding: .day, value: -7, to: date) else { return }
-        date = newDate
-    }
     
     // MARK: - Helper
     
