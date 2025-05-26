@@ -15,7 +15,7 @@ final class AddSleepSessionViewModelTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        viewContext = PersistenceController.shared.container.viewContext
+        viewContext = PersistenceController(inMemory: true).container.viewContext
         try? DefaultData(viewContext: viewContext).apply()
     }
     
@@ -42,7 +42,6 @@ final class AddSleepSessionViewModelTests: XCTestCase {
     
     func testAddSleepSessionFailed() {
         let context = FailingContext(concurrencyType: .mainQueueConcurrencyType)
-        context.persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: PersistenceController.shared.container.managedObjectModel)
         
         let addViewModel = AddSleepSessionViewModel(viewContext: context)
         addViewModel.startDate = .now - 86400

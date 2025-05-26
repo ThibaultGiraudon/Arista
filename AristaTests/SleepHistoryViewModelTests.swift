@@ -16,7 +16,7 @@ final class SleepHistoryViewModelTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        viewContext = PersistenceController.shared.container.viewContext
+        viewContext = PersistenceController(inMemory: true).container.viewContext
         calendar.timeZone = TimeZone(secondsFromGMT: 7200)!
         try? DefaultData(viewContext: viewContext).apply()
     }
@@ -97,7 +97,7 @@ final class SleepHistoryViewModelTests: XCTestCase {
     
     func testDeletesleepSessionsFailed() {
         let context = FailingContext(concurrencyType: .mainQueueConcurrencyType)
-        context.persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: PersistenceController.shared.container.managedObjectModel)
+        context.persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: PersistenceController(inMemory: true).container.managedObjectModel)
         
         let viewModel = SleepHistoryViewModel(context: context)
         

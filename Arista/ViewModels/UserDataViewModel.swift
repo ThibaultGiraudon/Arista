@@ -14,7 +14,8 @@ class UserDataViewModel: ObservableObject {
     @Published var weight: Double = 75.0
     @Published var size: Int = 175
     @Published var hoursSleep: Int = 8
-    
+    @Published var showAlert = false
+    @Published var alertTitle = ""
     /// Computes if save button should be disable
     var shouldDisable: Bool {
         name.isEmpty || email.isEmpty || weight < 30 || weight > 230 || size < 100 || size > 250
@@ -60,6 +61,8 @@ class UserDataViewModel: ObservableObject {
     func saveUser() {
         do {
             try UserRepository(viewContext: viewContext).saveUser(name: name, email: email, weight: weight, size: size, hoursSleep: hoursSleep)
+            alertTitle = "Les renseignements ont été enregistré avec succès"
+            showAlert = true
         } catch {
             appState.reportError("Error updating user: \(error.localizedDescription)")
         }

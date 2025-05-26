@@ -88,6 +88,9 @@ struct UserDataView: View {
             Color("DimGray")
                 .ignoresSafeArea()
         }
+        .alert(viewModel.alertTitle, isPresented: $viewModel.showAlert) {
+            Button("OK") { }
+        }
     }
 }
 

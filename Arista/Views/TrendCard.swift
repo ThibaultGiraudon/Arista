@@ -17,7 +17,7 @@ struct TrendCard: View {
     var body: some View {
         HStack(spacing: 0) {
             Image(systemName: icon)
-                .padding(15)
+                .padding(13)
                 .font(.title.bold())
                 .foregroundStyle(color)
                 .background(Circle().fill(color.opacity(0.1)))

@@ -25,7 +25,7 @@ struct DefaultData {
         let calendar = Calendar.current
         let year = 2025
         
-        deleteAllData(viewContext)
+//        deleteAllData(viewContext)
         
         if (try? userRepository.getUser()) == nil {
             let initialUser = User(context: viewContext)

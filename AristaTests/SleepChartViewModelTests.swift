@@ -15,7 +15,7 @@ final class SleepChartViewModelTests: XCTestCase {
     var timezone = TimeZone.current
     
     override func setUp() {
-        viewContext = PersistenceController.shared.container.viewContext
+        viewContext = PersistenceController(inMemory: true).container.viewContext
         calendar.timeZone = timezone
         try? DefaultData(viewContext: viewContext).apply()
         super.setUp()

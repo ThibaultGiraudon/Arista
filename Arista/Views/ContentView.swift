@@ -7,10 +7,6 @@
 
 import SwiftUI
 
-// TODO add comment in all project
-// TODO create extension for ViewModels
-// TODO moves extension in dedicated files
-// TODO add unit test
 struct ContentView: View {
     @StateObject private var sleepVM = SleepHistoryViewModel()
     @StateObject private var exerciseVM = ExerciseListViewModel()

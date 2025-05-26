@@ -15,7 +15,7 @@ final class AddExerciseViewModelTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        viewContext = PersistenceController.shared.container.viewContext
+        viewContext = PersistenceController(inMemory: true).container.viewContext
         try? DefaultData(viewContext: viewContext).apply()
     }
 
@@ -47,7 +47,7 @@ final class AddExerciseViewModelTests: XCTestCase {
     
     func testAddExerciseFailed() {
         let context = FailingContext(concurrencyType: .mainQueueConcurrencyType)
-        context.persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: PersistenceController.shared.container.managedObjectModel)
+//        context.persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: PersistenceController(inMemory: true).container.managedObjectModel)
         
         let addViewModel = AddExerciseViewModel(context: context)
         addViewModel.intensity = 5
