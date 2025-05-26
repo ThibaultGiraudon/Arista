@@ -32,7 +32,7 @@ struct UserDataView: View {
             .listRowBackground(Color("OffWhite"))
             Section("Renseignements") {
                 HStack {
-                    Text("Poid (kg)")
+                    Text("Poids (kg)")
                     TextField("", value: Binding(
                         get: { viewModel.weight },
                         set: { value in
