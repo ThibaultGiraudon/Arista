@@ -14,14 +14,7 @@
 		53E587692B23616A00E4EF99 /* UserDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E587682B23616A00E4EF99 /* UserDataViewModel.swift */; };
 		CE3934DE2DDA664D002B8730 /* Aristaa.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE3934DB2DDA6395002B8730 /* Aristaa.xcdatamodeld */; };
 		CE96E1732DD103290091BE11 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE96E1722DD103290091BE11 /* ContentView.swift */; };
-		CE96E1772DD1FB4D0091BE11 /* HeaderRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE96E1762DD1FB4D0091BE11 /* HeaderRow.swift */; };
-		CE96E1792DD1FB5F0091BE11 /* TrendCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE96E1782DD1FB5F0091BE11 /* TrendCard.swift */; };
-		CE96E17B2DD1FB6B0091BE11 /* TrendsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE96E17A2DD1FB6B0091BE11 /* TrendsSection.swift */; };
-		CE96E17D2DD1FB790091BE11 /* SleepSummaryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE96E17C2DD1FB790091BE11 /* SleepSummaryCard.swift */; };
-		CE96E17F2DD1FB850091BE11 /* CaloriesCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE96E17E2DD1FB850091BE11 /* CaloriesCard.swift */; };
-		CE96E1812DD1FB910091BE11 /* ExerciseSummaryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE96E1802DD1FB910091BE11 /* ExerciseSummaryCard.swift */; };
 		CE96E1832DD1FB9E0091BE11 /* UserHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE96E1822DD1FB9E0091BE11 /* UserHeaderView.swift */; };
-		CE96E18B2DD22C980091BE11 /* IntensityRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE96E18A2DD22C980091BE11 /* IntensityRowView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,14 +36,7 @@
 		53E587682B23616A00E4EF99 /* UserDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataViewModel.swift; sourceTree = "<group>"; };
 		CE3934DC2DDA6395002B8730 /* Aristaa.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Aristaa.xcdatamodel; sourceTree = "<group>"; };
 		CE96E1722DD103290091BE11 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		CE96E1762DD1FB4D0091BE11 /* HeaderRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderRow.swift; sourceTree = "<group>"; };
-		CE96E1782DD1FB5F0091BE11 /* TrendCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendCard.swift; sourceTree = "<group>"; };
-		CE96E17A2DD1FB6B0091BE11 /* TrendsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsSection.swift; sourceTree = "<group>"; };
-		CE96E17C2DD1FB790091BE11 /* SleepSummaryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepSummaryCard.swift; sourceTree = "<group>"; };
-		CE96E17E2DD1FB850091BE11 /* CaloriesCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaloriesCard.swift; sourceTree = "<group>"; };
-		CE96E1802DD1FB910091BE11 /* ExerciseSummaryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseSummaryCard.swift; sourceTree = "<group>"; };
 		CE96E1822DD1FB9E0091BE11 /* UserHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHeaderView.swift; sourceTree = "<group>"; };
-		CE96E18A2DD22C980091BE11 /* IntensityRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntensityRowView.swift; sourceTree = "<group>"; };
 		CEE113002DD61FCA00353204 /* AristaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AristaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -61,6 +47,8 @@
 		CE663E1D2DC78D3600793F91 /* Models */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Models; sourceTree = "<group>"; };
 		CE663E262DC78D4000793F91 /* Repositories */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Repositories; sourceTree = "<group>"; };
 		CE663E292DC78DA300793F91 /* Utiles */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Utiles; sourceTree = "<group>"; };
+		CEAE55B32DFC3866000DBE73 /* Trends */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Trends; sourceTree = "<group>"; };
+		CEAE55B42DFC3880000DBE73 /* Summary */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Summary; sourceTree = "<group>"; };
 		CEE112A12DD5DD9600353204 /* Exercise */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Exercise; sourceTree = "<group>"; };
 		CEE113012DD61FCA00353204 /* AristaTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = AristaTests; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -129,17 +117,12 @@
 			isa = PBXGroup;
 			children = (
 				CE96E1822DD1FB9E0091BE11 /* UserHeaderView.swift */,
-				CE96E1802DD1FB910091BE11 /* ExerciseSummaryCard.swift */,
-				CE96E17E2DD1FB850091BE11 /* CaloriesCard.swift */,
-				CE96E17C2DD1FB790091BE11 /* SleepSummaryCard.swift */,
-				CE96E1782DD1FB5F0091BE11 /* TrendCard.swift */,
-				CE96E17A2DD1FB6B0091BE11 /* TrendsSection.swift */,
-				CE96E1762DD1FB4D0091BE11 /* HeaderRow.swift */,
+				CEAE55B42DFC3880000DBE73 /* Summary */,
+				CEAE55B32DFC3866000DBE73 /* Trends */,
 				53E587622B235FF600E4EF99 /* UserDataView.swift */,
 				CE5B64B42DD102D60091DA59 /* Exercise */,
 				CE5B64B52DD102E50091DA59 /* Sleep */,
 				CE96E1722DD103290091BE11 /* ContentView.swift */,
-				CE96E18A2DD22C980091BE11 /* IntensityRowView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -176,6 +159,8 @@
 				CE663E1D2DC78D3600793F91 /* Models */,
 				CE663E262DC78D4000793F91 /* Repositories */,
 				CE663E292DC78DA300793F91 /* Utiles */,
+				CEAE55B32DFC3866000DBE73 /* Trends */,
+				CEAE55B42DFC3880000DBE73 /* Summary */,
 				CEE112A12DD5DD9600353204 /* Exercise */,
 			);
 			name = Arista;
@@ -268,17 +253,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE96E1812DD1FB910091BE11 /* ExerciseSummaryCard.swift in Sources */,
-				CE96E1772DD1FB4D0091BE11 /* HeaderRow.swift in Sources */,
-				CE96E18B2DD22C980091BE11 /* IntensityRowView.swift in Sources */,
 				53E587632B235FF600E4EF99 /* UserDataView.swift in Sources */,
 				53E587312B235E8F00E4EF99 /* AristaApp.swift in Sources */,
-				CE96E17B2DD1FB6B0091BE11 /* TrendsSection.swift in Sources */,
 				CE3934DE2DDA664D002B8730 /* Aristaa.xcdatamodeld in Sources */,
-				CE96E17F2DD1FB850091BE11 /* CaloriesCard.swift in Sources */,
 				CE96E1732DD103290091BE11 /* ContentView.swift in Sources */,
-				CE96E1792DD1FB5F0091BE11 /* TrendCard.swift in Sources */,
-				CE96E17D2DD1FB790091BE11 /* SleepSummaryCard.swift in Sources */,
 				CE96E1832DD1FB9E0091BE11 /* UserHeaderView.swift in Sources */,
 				53E587692B23616A00E4EF99 /* UserDataViewModel.swift in Sources */,
 			);
