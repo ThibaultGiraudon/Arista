@@ -110,8 +110,7 @@ class SleepHistoryViewModel: ObservableObject {
     /// Groupes all sessions by weeks from sleepSessions and updates the local state.
     private func mapSleepSessions() {
         mappedSessions = Dictionary(grouping: sleepSessions) { sleep -> Date in
-            guard let start = sleep.startDate else { return .now }
-            let startComponents = Calendar.current.dateComponents([.weekOfYear], from: start)
+            let startComponents = Calendar.current.dateComponents([.weekOfYear], from: sleep.endDate)
 
             if let date = Calendar.current.date(from: startComponents) {
                 return date

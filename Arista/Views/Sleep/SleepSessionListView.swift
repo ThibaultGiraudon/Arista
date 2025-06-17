@@ -50,7 +50,7 @@ struct SleepSessionListView: View {
         let week = calendar.dateInterval(of: .weekOfYear, for: newDate)
         guard let week = week else { return "" }
         let firstDay = week.start
-        let lastDay = week.end
+        let lastDay = week.end - 86400
         return "\(firstDay.formatted("d"))-\(lastDay.formatted("d")) \(lastDay.formatted("MMMM"))"
     }
     
