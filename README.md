@@ -1,98 +1,164 @@
-# Arista
+# 🚀 Vitesse
 
 ## Summary
 
-* [Description](#description)
-* [Installation](#installation)
-* [Features](#features)
+- [Description](#description)
+- [Installation](#installation)
+- [Features](#features)
+  - [API Integration](#api-integration)
+
+---
 
 ## Description
 
-**Arista** is an iOS app that allows users to track and manage their exercise and sleep sessions.
+**Vitesse** is an iOS application developed as part of my iOS developer training with OpenClassrooms.
+
+This app is designed to help manage job candidates. Users can:
+
+- View a list of candidates
+- Add new candidates
+- Edit existing ones
+- Delete candidates
+- Mark/unmark candidates as favorites
+
+The application communicates with a Swift backend API for all data operations.
+
+---
 
 ## Installation
 
-### Clone the repository
+### 1. Clone the repository
 
 ```bash
-git clone https://github.com/ThibaultGiraudon/Arista.git
+git clone https://github.com/ThibaultGiraudon/Vitesse.git
+````
+
+### 2. Run the API
+
+Ensure Swift is installed, then run:
+
+```bash
+cd CandidatesCAPI/
+swift run App --auto-migrate
 ```
+
+>  Replace `192.168.1.59` with your actual local IP address in the `Constants` file if needed.
+
+---
 
 ## Features
 
-### Core Data Integration
+### API Integration
 
-To ensure data persistence, Arista uses **Core Data**.
+To manage all API interactions, a robust and reusable pattern was implemented.
 
-I first created a `PersistenceController` struct to configure the Core Data stack.
-This struct includes a shared singleton instance that manages the storage and context.
+#### 1. Constants Setup
 
-By using `PersistenceController.shared.container.viewContext`, the app accesses a single shared context throughout the entire project. This makes it easier to load and save data consistently.
+```swift
+struct Constants {
+    static var scheme = "http"
+    static var host = "192.168.1.59"
+    static var port = 8080
+}
+```
 
-### Sleep Graph
+#### 2. EndPoint Protocol
 
-<img src="assets/sleeps-chart.png" alt="sleep chart" width="200"/>
+This protocol defines the structure of an API endpoint:
 
-This view displays an interactive weekly graph of sleep sessions.
-Each bar represents a recorded night, showing both bedtime and wake-up time.
+```swift
+protocol EndPoint {
+    var path: String { get }
+    var authorization: Authorization { get }
+    var method: Method { get }
+    var body: Data? { get }
+    var request: URLRequest? { get }
+}
+```
 
-Users can easily spot irregularities, visualize patterns, and track their sleep habits over time.
+Authorization and HTTP method types:
 
-### Exercise List
+```swift
+enum Authorization {
+    case none
+    case user
+}
 
-<img src="assets/exercices-list.png" alt="sleep chart" width="200"/>
+enum Method: String {
+    case post = "POST"
+    case get = "GET"
+    case put = "PUT"
+    case delete = "DELETE"
+}
+```
 
-This section displays all past exercises, grouped by month.
-Each activity is accompanied by an `SFSymbol` and an intensity icon.
+#### 3. Candidates API Endpoints
 
-Users get a clear overview of their recent physical activity.
+Defined using an `enum` that conforms to `EndPoint`:
 
-### Exercise Detail View
+```swift
+enum CandidatesEndPoints: EndPoint {
+    case candidates
+    case create(candidate: Candidate)
+    case delete(id: String)
+    case favorite(id: String)
+    case update(candidate: Candidate)
 
-<img src="assets/exercices-details.png" alt="exercices list" width="200"/>
+    var path: String { ... }
+    var method: Method { ... }
+    var body: Data? { ... }
+    var request: URLRequest? { ... }
+}
+```
 
-This view provides detailed information about a selected exercise session:
-calories burned, date, intensity, and more.
+#### 4. API Errors
 
-It helps users analyze their effort and progress more deeply.
+Robust error handling ensures clear feedback to users:
 
-### Intensity Picker
+```swift
+enum Error: Swift.Error, LocalizedError, Hashable {
+    case malformed, badRequest, unauthorized, notFound, responseError
+    case internalServerError
+    case custom(reason: String)
 
-<img src="assets/exercices-picker.png" alt="exercices details" width="200"/>
+    var errorDescription: String? { ... }
+}
+```
 
-Inspired by **Apple Fitness**, this custom picker allows users to rate their effort intensity.
+#### 5. Request Execution
 
-They can drag a white cursor that triggers haptic feedback, or tap on the gray bar to move the cursor.
-The cursor automatically resizes and animates smoothly using `withAnimation`.
+Generic function to call API and decode JSON responses:
 
-Each intensity level also comes with a background color gradient, making the experience more immersive.
+```swift
+func call<T: Decodable>(endPoint: EndPoint) async throws -> T {
+    guard let request = endPoint.request else {
+        throw Error.badRequest
+    }
 
-### Trends Overview
+    let (data, response) = try await session.data(for: request)
 
-<img src="assets/trends.png" alt="trends" width="200"/>
+    guard let httpResponse = response as? HTTPURLResponse else {
+        throw Error.responseError
+    }
 
-On the home screen, users will find:
+    guard httpResponse.statusCode == 200 || httpResponse.statusCode == 201 else {
+        let decoded = try JSONDecoder().decode(APIError.self, from: data)
+        switch httpResponse.statusCode {
+            case 401:
+                throw Error.custom(reason: decoded.reason)
+            case 404:
+                throw Error.notFound
+            case 500:
+                throw Error.custom(reason: "This email is already taken.")
+            default:
+                throw Error.internalServerError
+        }
+    }
 
-* Their most recent exercises and sleep sessions
-* Calories burned today
-* Trend analysis
+    if data.isEmpty {
+        return EmptyResponse() as! T
+    }
 
-The app displays four averages:
-
-* Bedtime
-* Wake-up time
-* Exercise duration
-* Sleep duration
-
-These are compared between the last 7 days and the rest of the data.
-A `SFSymbol` indicates whether each trend is **stable**, **improving**, or **declining**.
-
----
-<img src="assets/trends.png" alt="trends" width="200"/> <img src="assets/sleeps-chart.png" alt="sleep chart" width="200"/> 
-<img src="assets/sleeps-list.png" alt="sleep list" width="200"/>
-<img src="assets/sleep-form.png" alt="sleep form" width="200"/>
-<img src="assets/exercices-list.png" alt="exercices list" width="200"/>
-<img src="assets/exercices-details.png" alt="exercices details" width="200"/>
-<img src="assets/exercices-picker.png" alt="exercices picker" width="200"/>
-<img src="assets/exercices-form.png" alt="exercices form" width="200"/>
-<img src="assets/user-form.png" alt="user-form" width="200"/>
+    return try JSONDecoder().decode(T.self, from: data)
+}
+```
