@@ -12,26 +12,24 @@ struct ExerciseListView: View {
     @State private var showingAddExerciseView = false
     
     var body: some View {
-        NavigationView {
-            VStack(alignment: .leading) {
-                List(viewModel.sortedExercises, id: \.0) { month, exercises in
-                    Section("\(month.formatted("MMMM YYYY"))") {
-                        ForEach(exercises, id: \.self) { exercise in
-                            NavigationLink {
-                                ExerciseDetailView(exercise: exercise)
-                            } label: {
-                                ExerciseRowView(exercise: exercise)
-                            }
-                        }
-                        .onDelete { indexes in
-                            let exerciseToDelete = indexes.map { exercises[$0] }
-                            viewModel.deleteExercises(exerciseToDelete)
+        VStack(alignment: .leading) {
+            List(viewModel.sortedExercises, id: \.0) { month, exercises in
+                Section("\(month.formatted("MMMM YYYY"))") {
+                    ForEach(exercises, id: \.self) { exercise in
+                        NavigationLink {
+                            ExerciseDetailView(exercise: exercise)
+                        } label: {
+                            ExerciseRowView(exercise: exercise)
                         }
                     }
-                    .listRowBackground(Color("OffWhite"))
+                    .onDelete { indexes in
+                        let exerciseToDelete = indexes.map { exercises[$0] }
+                        viewModel.deleteExercises(exerciseToDelete)
+                    }
                 }
-                .scrollContentBackground(.hidden)
+                .listRowBackground(Color("OffWhite"))
             }
+            .scrollContentBackground(.hidden)
             .background {
                 Color("DimGray")
                     .ignoresSafeArea()

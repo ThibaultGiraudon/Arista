@@ -101,7 +101,7 @@ struct IntensityPickerView: View {
                 }
             }
             ToolbarItem(placement: .topBarTrailing) {
-                Button("Mettre a jour") {
+                Button("Mettre à jour") {
                     viewModel.intensity = viewModel.currentIntensity
                     dismiss()
                 }

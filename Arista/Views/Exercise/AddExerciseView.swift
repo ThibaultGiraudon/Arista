@@ -18,11 +18,12 @@ struct AddExerciseView: View {
                 Section("Détail") {
                     Picker("Catégorie", selection: $viewModel.category) {
                         ForEach(Category.allCases, id: \.self) { category in
-                            Text("\(category)")
+                            Text(category.rawValue)
                         }
                     }
                     DatePicker("Date", selection: $viewModel.date)
                     TextField("Durée (en minutes)", value: $viewModel.duration, format: .number)
+                        .keyboardType(.numberPad)
                 }
                 Section("Effort") {
                     Button {
