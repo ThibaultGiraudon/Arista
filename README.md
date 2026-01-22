@@ -10,13 +10,21 @@
 
 **Arista** is an iOS app that allows users to track and manage their exercise and sleep sessions.
 
-## Installation
+## Tech Stack
+- Swift, SwiftUI
+- MVVM architecture
+- CoreData for local persistence
+- Charts & data visualization
+- Animations & haptic feedback
 
-### Clone the repository
+## Architecture
 
-```bash
-git clone https://github.com/ThibaultGiraudon/Arista.git
-```
+Arista is built using the **MVVM** architecture.
+
+- Views are written in SwiftUI
+- Business logic is handled inside ViewModels
+- Data persistence is managed through CoreData
+- The architecture focuses on testability and maintainability
 
 ## Features
 
