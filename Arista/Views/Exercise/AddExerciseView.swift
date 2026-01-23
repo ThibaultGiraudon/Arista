@@ -21,7 +21,7 @@ struct AddExerciseView: View {
                             Text(category.rawValue)
                         }
                     }
-                    DatePicker("Date", selection: $viewModel.date)
+                    DatePicker("Date", selection: $viewModel.date, in: ...Date.now)
                     TextField("Durée (en minutes)", value: $viewModel.duration, format: .number)
                         .keyboardType(.numberPad)
                 }
