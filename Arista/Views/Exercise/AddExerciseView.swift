@@ -34,7 +34,7 @@ struct AddExerciseView: View {
                 }
             }
         }
-        .navigationTitle("Nouvel Exercice ...")
+        .navigationTitle("Ajouter un exercice")
         .toolbar {
             ToolbarItem(placement: .cancellationAction) {
                 Button("Annuler") {

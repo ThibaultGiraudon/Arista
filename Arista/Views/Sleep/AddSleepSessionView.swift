@@ -18,11 +18,8 @@ struct AddSleepSessionView: View {
             }
             Section("Qualité") {
                 SleepQualityPicker(quality: $viewModel.quality)
-                    .padding(.vertical, 20)
             }
         }
-        .navigationTitle("Sommeil")
-        .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .cancellationAction) {
                 Button("Annuler") {

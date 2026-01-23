@@ -25,7 +25,7 @@ struct DefaultData {
         let calendar = Calendar.current
         let year = 2025
         
-//        deleteAllData(viewContext)
+        deleteAllData(viewContext)
         
         if (try? userRepository.getUser()) == nil {
             let initialUser = User(context: viewContext)
@@ -38,15 +38,15 @@ struct DefaultData {
 
             if try sleepRepository.getSleepSessions().isEmpty {
                 let sleepData: [(day: Int, month: Int, hour: Int, minute: Int, duration: Int, quality: Int16)] = [
-                    (5, 05 ,0, 43, 480, 5),
-                    (5, 05, 23, 57, 405, 7),
-                    (7, 05, 0, 30, 510, 2),
-                    (7, 05, 22, 50, 465, 4),
-                    (8, 05, 23, 10, 420, 10),
-                    (10, 05, 0, 5, 450, 1),
-                    (10, 05, 23, 37, 360, 8),
-                    (11, 05, 22, 00, 305, 6),
-                    (13, 05, 1, 15, 420, 3),
+                    (15, 09 ,0, 43, 480, 5),
+                    (15, 09, 23, 57, 405, 7),
+                    (17, 09, 0, 30, 510, 2),
+                    (17, 09, 22, 50, 465, 4),
+                    (18, 09, 23, 10, 420, 10),
+                    (20, 09, 0, 5, 450, 1),
+                    (20, 09, 23, 37, 360, 8),
+                    (21, 09, 22, 00, 305, 6),
+                    (23, 09, 1, 15, 420, 3),
                 ]
                 
                 for data in sleepData {
@@ -74,10 +74,16 @@ struct DefaultData {
             
             if try exerciseReporsitory.getExercises().isEmpty {
                 let exerciseData: [(day: Int, month: Int, category: String, intensity: Int16, duration: Int64)] = [
-                    (30, 04, "Boxe", 10, 60),
-                    (10, 05, "Badminton", 3, 63),
-                    (12, 05, "Course à pied", 8, 29),
-                    (12, 05, "Course à pied", 5, 15),
+                    (30, 07, "Boxe", 10, 60),
+                    (10, 08, "Badminton", 3, 63),
+                    (12, 08, "Course à pied", 8, 29),
+                    (12, 08, "Course à pied", 5, 15),
+                    (15, 08, "Natation", 6, 45),
+                    (18, 08, "Musculation", 7, 50),
+                    (20, 08, "Yoga", 2, 40),
+                    (02, 09, "Randonnée", 4, 120),
+                    (05, 09, "Natation", 7, 60),
+                    (10, 09, "Musculation", 6, 50)
                 ]
                 
                 for data in exerciseData {
@@ -89,7 +95,7 @@ struct DefaultData {
                         year: year,
                         month: data.month,
                         day: data.day,
-                        hour: 12,
+                        hour: Int.random(in: 8...20),
                         minute: 0,
                         second: 0
                     )

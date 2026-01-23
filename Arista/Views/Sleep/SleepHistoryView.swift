@@ -16,67 +16,65 @@ struct SleepHistoryView: View {
     let calendar = Calendar.current
 
     var body: some View {
-        NavigationStack {
-            VStack {
-                Chart(viewModel.chartDatas, id: \.self) { data in
-                    BarMark(
-                        x: .value("Jour", data.day, unit: .day),
-                        yStart: .value("Heure de coucher", data.start),
-                        yEnd: .value("Heure de réveil", data.end)
-                    )
-                    .foregroundStyle(.blue.opacity(0.6))
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                    
-                    if let selectedDate, let session = viewModel.getSleepSession(for: selectedDate) {
-                        sleepAnnotation(for: session, on: selectedDate)
-                    }
-                }
-                .chartXSelection(value: $selectedDate)
-                .gesture(gesture)
-                .chartXAxis {
-                    AxisMarks(values: .stride(by: .day, count: 1)) { value in
-                        AxisValueLabel(format: .dateTime.day().month())
-                    }
-                }
-                .chartYAxis {
-                    AxisMarks(values: .stride(by: .hour, count: 2)) {
-                        AxisGridLine()
-                        AxisValueLabel(format: .dateTime.hour().minute())
-                    }
-                }
-                .chartYScale(domain: viewModel.yRange)
-                .chartXScale(domain: viewModel.xRange)
-                .padding()
-                .frame(height: 400)
-                Form {
-                    NavigationLink {
-                        SleepSessionListView(viewModel: viewModel)
-                    } label: {
-                        Text("Afficher toutes les données")
-                    }
-                    .listRowBackground(Color("OffWhite"))
-                }
-                .scrollDisabled(true)
-                .scrollContentBackground(.hidden)
-            }
-            .background {
-                Color("DimGray")
-                    .ignoresSafeArea()
-            }
-            .foregroundStyle(Color("TextColor"))
-            .navigationTitle("Sommeil")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button("Ajouter des données") {
-                        showSheet = true
-                    }
+        VStack {
+            Chart(viewModel.chartDatas, id: \.self) { data in
+                BarMark(
+                    x: .value("Jour", data.day, unit: .day),
+                    yStart: .value("Heure de coucher", data.start),
+                    yEnd: .value("Heure de réveil", data.end)
+                )
+                .foregroundStyle(.blue.opacity(0.6))
+                .clipShape(RoundedRectangle(cornerRadius: 10))
+                
+                if let selectedDate, let session = viewModel.getSleepSession(for: selectedDate) {
+                    sleepAnnotation(for: session, on: selectedDate)
                 }
             }
-            .sheet(isPresented: $showSheet, onDismiss: viewModel.fetchSleepSessions) {
-                NavigationStack {
-                    AddSleepSessionView()
+            .chartXSelection(value: $selectedDate)
+            .gesture(gesture)
+            .chartXAxis {
+                AxisMarks(values: .stride(by: .day, count: 1)) { value in
+                    AxisValueLabel(format: .dateTime.day().month())
                 }
+            }
+            .chartYAxis {
+                AxisMarks(values: .stride(by: .hour, count: 2)) {
+                    AxisGridLine()
+                    AxisValueLabel(format: .dateTime.hour().minute())
+                }
+            }
+            .chartYScale(domain: viewModel.yRange)
+            .chartXScale(domain: viewModel.xRange)
+            .padding()
+            .frame(height: 400)
+            Form {
+                NavigationLink {
+                    SleepSessionListView(viewModel: viewModel)
+                } label: {
+                    Text("Afficher toutes les données")
+                }
+                .listRowBackground(Color("OffWhite"))
+            }
+            .scrollDisabled(true)
+            .scrollContentBackground(.hidden)
+        }
+        .background {
+            Color("DimGray")
+                .ignoresSafeArea()
+        }
+        .foregroundStyle(Color("TextColor"))
+        .navigationTitle("Sommeil")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button("Ajouter des données") {
+                    showSheet = true
+                }
+            }
+        }
+        .sheet(isPresented: $showSheet, onDismiss: viewModel.fetchSleepSessions) {
+            NavigationStack {
+                AddSleepSessionView()
             }
         }
     }

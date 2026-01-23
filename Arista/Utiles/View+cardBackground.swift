@@ -8,7 +8,7 @@
 import SwiftUI
 
 extension View {
-    func cardBackground(_ length: CGFloat = 20) -> some View {
+    func cardBackground(_ length: CGFloat = 15) -> some View {
         self
             .padding(length)
             .background {

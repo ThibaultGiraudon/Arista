@@ -24,8 +24,7 @@ struct SleepSummaryCard: View {
                 HStack {
                     Text("\(lastSleep.duration / 60)").font(.title.bold())
                     Text("h")
-                    Text("\(lastSleep.duration % 60)").font(.title.bold())
-                    Text("min")
+                    Text("\(lastSleep.duration % 60 < 10 ? "0" : "")\(lastSleep.duration % 60)").font(.title.bold())
                 }
             }
             .cardBackground()
