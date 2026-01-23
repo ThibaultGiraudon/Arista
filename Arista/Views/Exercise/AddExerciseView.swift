@@ -47,6 +47,7 @@ struct AddExerciseView: View {
                     viewModel.addExercise()
                     dismiss()
                 }
+                .disabled(viewModel.duration <= 0)
             }
         }
         .sheet(isPresented: $showIntensityPicker) {
